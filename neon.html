@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Media Network | Global News Portal</title>
+    <meta name="description" content="Release Media Network - Your source for Sports, Tech, Business, and Automobile news.">
+    
+    <!-- Google Fonts: Modern & Sleek Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Attractive Neon Colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            blue: '#00f3ff',
+                            pink: '#ff00ff',
+                            purple: '#bc13fe',
+                            green: '#00ff66',
+                            yellow: '#ffea00',
+                            red: '#ff0055',
+                            dark: '#05050a',
+                            card: '#0f0f16'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '1', filter: 'brightness(1)' },
+                            '50%': { opacity: '.8', filter: 'brightness(1.5)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ATTRACTIVE NEON STYLES */
+        
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* Light Mode Default Styles */
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.05), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.05), transparent 30%);
+            background-attachment: fixed;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark Mode Styles */
+        .dark body {
+            background-color: #05050a;
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.04), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.04), transparent 30%);
+        }
+
+        /* Sleek Glass Navigation */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        .dark .glass-nav {
+            background: rgba(5, 5, 10, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Smooth Glowing Loader */
+        .loader {
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top: 3px solid #00f3ff;
+            border-right: 3px solid #ff00ff;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        }
+        .dark .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #00f3ff;
+            border-right: 3px solid #ff00ff;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Attractive Neon Cards */
+        .neon-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        .dark .neon-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: none;
+        }
+        
+        .neon-card:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.2), inset 0 0 20px rgba(0,243,255,0.05);
+            transform: translateY(-6px);
+        }
+        .dark .neon-card:hover {
+            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0,243,255,0.05);
+        }
+
+        /* Image styling inside cards */
+        .img-container {
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+        .img-container img {
+            transition: transform 0.6s ease, filter 0.6s ease;
+            filter: brightness(0.95) contrast(1.05);
+        }
+        .dark .img-container img {
+            filter: brightness(0.8) contrast(1.1);
+        }
+        .neon-card:hover .img-container img {
+            transform: scale(1.08);
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: linear-gradient(to top, rgba(240,244,248,1), rgba(248,250,252,1));
+        }
+        .dark footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(to top, rgba(5,5,10,1), rgba(15,15,22,1));
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #05050a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 243, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="transition-colors duration-300 font-sans">
+
+    <!-- Loading Screen -->
+    <div id="global-loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-50 dark:bg-neon-dark transition-opacity duration-500 backdrop-blur-md">
+        <div class="loader mb-6"></div>
+        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white uppercase tracking-tighter drop-shadow-md">RMN // BOOTING</h2>
+        <p class="text-xs sm:text-sm font-bold text-neon-blue uppercase tracking-widest mt-2 animate-pulse">Connecting to Grid...</p>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 bg-white/80 dark:bg-neon-dark/80 backdrop-blur-md text-neon-blue p-3 sm:p-4 rounded-full shadow-[0_0_15px_rgba(0,243,255,0.3)] border border-gray-200 dark:border-neon-blue/30 opacity-0 translate-y-10 transition-all duration-300 hover:bg-neon-blue hover:text-white dark:hover:text-black hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] focus:outline-none" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up text-lg sm:text-xl"></i>
+    </button>
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-40 glass-nav transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-1 min-w-0 flex items-center cursor-pointer group mr-2" onclick="router.navigate('home')">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-neon-pink to-neon-purple flex items-center justify-center mr-2 sm:mr-3 text-white font-black text-lg sm:text-xl shadow-[0_0_15px_rgba(255,0,255,0.4)] group-hover:shadow-[0_0_25px_rgba(255,0,255,0.6)] transition-all">R</div>
+                    <div class="flex flex-col justify-center truncate">
+                        <span class="font-black text-lg sm:text-2xl tracking-tight leading-none text-gray-900 dark:text-white drop-shadow-sm">RELEASE</span>
+                        <span class="text-[7px] sm:text-[9px] font-bold tracking-widest sm:tracking-[0.2em] text-neon-blue uppercase mt-1">Media Network</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex space-x-6">
+                    <a href="#" onclick="router.navigate('home')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-wide">Home</a>
+                    <a href="#" onclick="router.navigate('sports')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-pink dark:hover:text-neon-pink transition uppercase tracking-wide">Sports</a>
+                    <a href="#" onclick="router.navigate('automobile')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-wide">Automobile</a>
+                    <a href="#" onclick="router.navigate('business')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-green dark:hover:text-neon-green transition uppercase tracking-wide">Business</a>
+                    <a href="#" onclick="router.navigate('tech')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-purple dark:hover:text-neon-purple transition uppercase tracking-wide">Tech</a>
+                    <a href="#" onclick="router.navigate('films')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-yellow dark:hover:text-neon-yellow transition uppercase tracking-wide">Films</a>
+                    <a href="#" onclick="router.navigate('education')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-wide">Education</a>
+                </nav>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-4 flex-shrink-0">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center hover:bg-neon-blue hover:text-white dark:hover:text-black hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all text-gray-600 dark:text-gray-400 focus:outline-none">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <!-- Subscribe Button (Desktop) -->
+                    <button class="hidden md:block bg-transparent text-neon-blue border border-neon-blue/50 px-5 py-2 text-sm font-bold rounded-full transition-all shadow-[0_0_10px_rgba(0,243,255,0.1)] hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:bg-neon-blue hover:text-white dark:hover:text-black uppercase tracking-wider">
+                        Subscribe
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 text-gray-700 dark:text-white hover:text-neon-blue focus:outline-none transition-colors">
+                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 dark:bg-neon-dark/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 absolute w-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="#" onclick="router.navigate('home')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-blue dark:hover:text-neon-blue uppercase tracking-wide transition">Home</a>
+                <a href="#" onclick="router.navigate('sports')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-pink dark:hover:text-neon-pink uppercase tracking-wide transition">Sports</a>
+                <a href="#" onclick="router.navigate('automobile')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-blue dark:hover:text-neon-blue uppercase tracking-wide transition">Automobile</a>
+                <a href="#" onclick="router.navigate('business')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-green dark:hover:text-neon-green uppercase tracking-wide transition">Business</a>
+                <a href="#" onclick="router.navigate('tech')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-purple dark:hover:text-neon-purple uppercase tracking-wide transition">Tech & AI</a>
+                <a href="#" onclick="router.navigate('films')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-yellow dark:hover:text-neon-yellow uppercase tracking-wide transition">Films</a>
+                <a href="#" onclick="router.navigate('education')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-blue dark:hover:text-neon-blue uppercase tracking-wide transition">Education</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="pt-24 sm:pt-28 min-h-screen pb-12 overflow-hidden w-full relative">
+        
+        <!-- Header Banner (Home Only) -->
+        <div id="home-banner" class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mb-12 sm:mb-16 hidden w-full">
+            <div class="text-center py-10 sm:py-16 relative overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 w-full neon-card">
+                <!-- Inner Glowing Background -->
+                <div class="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-neon-dark dark:via-[#100a20] dark:to-[#0a1020] opacity-90"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-neon-pink/10 dark:bg-neon-pink/20 rounded-full blur-[80px] pointer-events-none"></div>
+                
+                <h1 class="text-[9vw] sm:text-5xl md:text-7xl font-black mb-2 sm:mb-4 relative z-10 tracking-tighter leading-[1.1] break-words px-2 w-full text-gradient bg-gradient-to-r from-neon-blue via-[#b4a0ff] to-neon-pink" style="filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));">
+                    TODAY'S HEADLINES
+                </h1>
+                <p class="text-[3.5vw] sm:text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto relative z-10 uppercase tracking-widest px-2 sm:px-4 leading-snug">
+                    Real-time drops from Sports, Tech, Cinema & Finance.
+                </p>
+                <div class="mt-5 sm:mt-8 text-[10px] sm:text-sm font-bold tracking-widest uppercase text-neon-green border border-neon-green/30 bg-neon-green/10 rounded-full inline-block px-4 py-1.5 sm:py-2 relative z-10 shadow-[0_0_15px_rgba(0,255,102,0.2)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Container for SPA Views -->
+        <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <!-- Content Injected via JS -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-gray-900 dark:text-white pt-16 pb-8 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-neon-purple/50 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 sm:gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 rounded bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center mr-3 font-black text-xl text-white shadow-[0_0_10px_rgba(0,243,255,0.4)]">R</div>
+                        <span class="font-black text-2xl tracking-tighter text-gray-900 dark:text-white">RELEASE MEDIA</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-medium text-sm leading-relaxed mb-6 uppercase tracking-wider">
+                        Empowering the grid with real-time, raw, and unfiltered updates.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-blue hover:text-white dark:hover:text-black hover:border-neon-blue hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-blue hover:text-white dark:hover:text-black hover:border-neon-blue hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-pink hover:text-white dark:hover:text-black hover:border-neon-pink hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-red hover:text-white dark:hover:text-black hover:border-neon-red hover:shadow-[0_0_15px_rgba(255,0,85,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Link Tree</h3>
+                    <ul class="space-y-3 text-sm font-medium uppercase tracking-wider">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> About Us</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Collab</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Careers</a></li>
+                        <li><a href="#" onclick="showApiDocs()" class="text-neon-green hover:text-gray-900 dark:hover:text-white transition flex items-center gap-2"><i class="fas fa-terminal text-xs"></i> API Docs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Sectors</h3>
+                    <ul class="space-y-3 text-sm font-medium uppercase tracking-wider">
+                        <li><a href="#" onclick="router.navigate('sports')" class="text-gray-600 dark:text-gray-400 hover:text-neon-pink dark:hover:text-neon-pink transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Sports</a></li>
+                        <li><a href="#" onclick="router.navigate('tech')" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Tech</a></li>
+                        <li><a href="#" onclick="router.navigate('business')" class="text-gray-600 dark:text-gray-400 hover:text-neon-green dark:hover:text-neon-green transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Business</a></li>
+                        <li><a href="#" onclick="router.navigate('films')" class="text-gray-600 dark:text-gray-400 hover:text-neon-yellow dark:hover:text-neon-yellow transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Entertainment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Join Grid</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs mb-4 uppercase tracking-wider">Get raw updates delivered straight to you.</p>
+                    <form class="flex flex-col space-y-3" onsubmit="event.preventDefault(); alert('SYNC COMPLETE!');">
+                        <input type="email" placeholder="ENTER EMAIL..." class="bg-white dark:bg-white/5 text-gray-900 dark:text-neon-blue px-4 py-3 rounded-lg border border-gray-300 dark:border-white/10 focus:outline-none focus:border-neon-blue focus:shadow-[0_0_10px_rgba(0,243,255,0.2)] text-sm uppercase w-full transition-all">
+                        <button type="submit" class="bg-neon-blue text-white dark:text-black px-4 py-3 rounded-lg font-bold text-sm transition-all hover:opacity-90 dark:hover:bg-white hover:shadow-[0_0_15px_rgba(0,243,255,0.6)] uppercase tracking-widest w-full">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-medium uppercase tracking-widest text-gray-500">
+                <p>&copy; 2026 RELEASE MEDIA NETWORK.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-neon-blue transition">Privacy</a>
+                    <a href="#" class="hover:text-neon-blue transition">Terms</a>
+                    <a href="#" class="hover:text-neon-blue transition">System</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Documentation Modal -->
+    <div id="docs-modal" class="fixed inset-0 z-50 hidden bg-black/60 dark:bg-black/80 flex items-center justify-center p-3 sm:p-4 backdrop-blur-md">
+        <div class="bg-white dark:bg-neon-dark border border-gray-200 dark:border-white/10 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl dark:shadow-[0_0_30px_rgba(0,243,255,0.2)]">
+            <div class="p-5 sm:p-8">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-200 dark:border-white/10 pb-4 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white uppercase tracking-widest dark:text-glow">API Integration</h2>
+                    <button onclick="hideApiDocs()" class="text-gray-500 hover:text-neon-red transition text-3xl sm:text-4xl">&times;</button>
+                </div>
+                <div class="prose dark:prose-invert text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">
+                    <p class="font-bold uppercase text-neon-blue tracking-wider mb-4">System Connect Protocol:</p>
+                    <ol class="list-decimal pl-5 space-y-3 marker:text-neon-purple">
+                        <li>For each sector (Sports, Tech, etc.), distinct access tokens are required.</li>
+                        <li>Access <a href="https://developers.facebook.com/" target="_blank" class="text-neon-blue underline hover:text-gray-900 dark:hover:text-white transition">Meta Developer Grid</a>.</li>
+                        <li>Generate a <strong class="text-gray-900 dark:text-white">User Token</strong> and <strong class="text-gray-900 dark:text-white">User ID</strong>.</li>
+                        <li>Locate the <code class="bg-gray-100 dark:bg-white/10 text-neon-pink px-1 rounded">CONFIG.ACCOUNTS</code> matrix in the source.</li>
+                        <li>Inject the tokens.</li>
+                        <li>Set <code class="bg-gray-100 dark:bg-white/10 text-neon-pink px-1 rounded">USE_MOCK_DATA: false</code> to sync live.</li>
+                    </ol>
+                    <div class="mt-6 p-4 sm:p-6 bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-lg text-neon-green font-mono text-xs sm:text-sm overflow-x-auto shadow-inner">
+                        <code>
+                            ACCOUNTS: {<br>
+                            &nbsp;&nbsp;sports: { token: '...', userId: '...' },<br>
+                            &nbsp;&nbsp;tech: { token: '...', userId: '...' },<br>
+                            &nbsp;&nbsp;...<br>
+                            }
+                        </code>
+                    </div>
+                </div>
+                <div class="mt-8 text-right">
+                    <button onclick="hideApiDocs()" class="px-5 sm:px-6 py-2.5 sm:py-3 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-white rounded-lg hover:bg-neon-red hover:text-white hover:border-neon-red dark:hover:shadow-[0_0_15px_rgba(255,0,85,0.5)] font-bold uppercase transition tracking-widest text-sm sm:text-base">Close Matrix</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        /**
+         * CONFIGURATION
+         */
+        const CONFIG = {
+            USE_MOCK_DATA: true, 
+            
+            ACCOUNTS: {
+                sports:     { token: '', userId: '' },
+                automobile: { token: '', userId: '' },
+                business:   { token: '', userId: '' },
+                tech:       { token: '', userId: '' },
+                agriculture:{ token: '', userId: '' },
+                films:      { token: '', userId: '' },
+                education:  { token: '', userId: '' }
+            },
+
+            POST_LIMIT_HOME: 4,         
+            POST_LIMIT_CATEGORY: 12     
+        };
+
+        // Categories Configuration - WITH GLOWING NEON HEXES
+        const CATEGORIES = [
+            { id: 'sports', label: 'Sports', color: 'bg-[#ff0055]', hex: '#ff0055', keywords: 'sports,stadium,athlete' },
+            { id: 'automobile', label: 'Automobile', color: 'bg-[#00f3ff]', hex: '#00f3ff', keywords: 'supercar,luxury car' },
+            { id: 'business', label: 'Business', color: 'bg-[#00ff66]', hex: '#00ff66', keywords: 'business meeting,finance' },
+            { id: 'tech', label: 'Tech & AI', color: 'bg-[#bc13fe]', hex: '#bc13fe', keywords: 'cyberpunk,artificial intelligence,chip' },
+            { id: 'agriculture', label: 'Agriculture', color: 'bg-[#ffea00]', hex: '#ffea00', keywords: 'agriculture,farm,wheat' },
+            { id: 'films', label: 'Films', color: 'bg-[#ff00ff]', hex: '#ff00ff', keywords: 'cinema,movie theater,film' },
+            { id: 'education', label: 'Education', color: 'bg-[#00aaff]', hex: '#00aaff', keywords: 'university,library' }
+        ];
+
+        const generateMockPosts = (category, count) => {
+            const posts = [];
+            const keywords = CATEGORIES.find(c => c.id === category)?.keywords || 'neon';
+            
+            const titles = [
+                `Global summit on ${category} reaches new milestone today.`,
+                `Top 10 innovations in ${category} you need to know about.`,
+                `Breaking: Major merger announced in the ${category} sector.`,
+                `How AI is revolutionizing the future of ${category}.`,
+                `Local hero wins prestigious award in ${category}.`,
+                `Market analysis: The rising trends in ${category} for 2026.`,
+                `Exclusive interview with the CEO of leading ${category} firm.`,
+                `Why ${category} is becoming the most popular career choice.`,
+                `New regulations passed affecting all ${category} industries.`,
+                `The unseen impact of climate change on ${category}.`,
+                `Viral: This ${category} moment is taking over the internet.`,
+                `Expert guide: How to start your journey in ${category}.`
+            ];
+
+            for (let i = 0; i < count; i++) {
+                posts.push({
+                    id: `post-${category}-${i}`,
+                    imageUrl: `https://source.unsplash.com/600x600/?${keywords.split(',')[i % 3]},neon,dark,sig=${Math.random()}`,
+                    fallbackImage: `https://picsum.photos/seed/${category}${i}/600/600`, 
+                    caption: titles[i % titles.length] + " #ReleaseMedia #" + category,
+                    permalink: '#',
+                    timestamp: new Date(Date.now() - Math.floor(Math.random() * 1000000000)).toISOString()
+                });
+            }
+            return posts;
+        };
+
+        class DataService {
+            static async fetchPosts(categoryId, limit) {
+                if (CONFIG.USE_MOCK_DATA) {
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve(generateMockPosts(categoryId, limit));
+                        }, 800); 
+                    });
+                } else {
+                    return this.fetchFromInstagram(categoryId, limit);
+                }
+            }
+
+            static async fetchFromInstagram(categoryId, limit) {
+                try {
+                    const creds = CONFIG.ACCOUNTS[categoryId];
+                    if (!creds || !creds.token || !creds.userId) return generateMockPosts(categoryId, limit);
+                    const url = `https://graph.instagram.com/${creds.userId}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${creds.token}`;
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`API Error`);
+                    const data = await response.json();
+                    if (!data.data) throw new Error("No data");
+
+                    return data.data.slice(0, limit).map(post => ({
+                        id: post.id,
+                        imageUrl: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
+                        caption: post.caption || 'No caption available',
+                        permalink: post.permalink,
+                        timestamp: post.timestamp
+                    }));
+                } catch (error) {
+                    return generateMockPosts(categoryId, limit);
+                }
+            }
+        }
+
+        const Components = {
+            postCard: (post) => {
+                const date = new Date(post.timestamp).toLocaleDateString();
+                const img = post.imageUrl.includes('unsplash') ? post.imageUrl : post.fallbackImage;
+                
+                return `
+                <div class="neon-card group flex flex-col h-full relative mx-1 sm:mx-0 w-full">
+                    <div class="relative h-48 sm:h-56 img-container bg-gray-100 dark:bg-[#05050a]">
+                        <img src="${img}" alt="News Image" class="w-full h-full object-cover opacity-90 group-hover:opacity-100" onerror="this.src='https://placehold.co/600x400/05050a/00f3ff?text=Signal+Lost'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-[#05050a] to-transparent"></div>
+                        <div class="absolute top-3 right-3 bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white backdrop-blur-md text-[10px] font-bold px-2 py-1 rounded shadow-sm dark:shadow-[0_0_10px_rgba(0,0,0,0.5)] uppercase tracking-widest flex items-center gap-1 dark:group-hover:border-[#ff00ff] dark:group-hover:text-[#ff00ff] transition-colors">
+                            <i class="fab fa-instagram"></i> INSTA
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5 flex flex-col flex-grow z-10 -mt-6">
+                        <div class="flex items-center text-[10px] sm:text-xs font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-widest">
+                            <i class="far fa-clock mr-2 text-neon-blue"></i> ${date}
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-gray-800 dark:text-gray-200 mb-5 line-clamp-2 leading-snug flex-grow tracking-wide group-hover:text-neon-blue transition-colors drop-shadow-sm dark:drop-shadow-md">
+                            ${post.caption}
+                        </h3>
+                        <a href="${post.permalink}" target="_blank" class="mt-auto block w-full text-center py-2.5 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 text-xs sm:text-sm font-bold hover:bg-neon-blue hover:text-white dark:hover:text-black hover:border-neon-blue transition-all uppercase tracking-widest shadow-sm dark:shadow-[0_0_0_rgba(0,243,255,0)] dark:group-hover:shadow-[0_0_15px_rgba(0,243,255,0.4)]">
+                            READ POST <i class="fas fa-arrow-right ml-1.5 sm:ml-2 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+                `;
+            },
+
+            sectionHeader: (category) => `
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 sm:mb-8 border-b border-gray-200 dark:border-white/10 pb-3 w-full px-1 sm:px-0">
+                    <div class="flex items-center max-w-full">
+                        <div class="w-1.5 sm:w-2 h-8 sm:h-10 ${category.color} mr-3 sm:mr-4 rounded-full shadow-sm dark:shadow-[0_0_12px_${category.hex}]"></div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white uppercase tracking-tighter break-words leading-none truncate max-w-[85vw]">
+                            ${category.label}
+                        </h2>
+                    </div>
+                    <button onclick="router.navigate('${category.id}')" class="hidden md:flex items-center text-xs font-bold text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-widest mt-4 md:mt-0 bg-transparent">
+                        VIEW ALL <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+            `,
+
+            mobileViewAllBtn: (categoryId) => `
+                <div class="mt-6 sm:mt-8 text-center md:hidden px-2 sm:px-0 w-full">
+                    <button onclick="router.navigate('${categoryId}')" class="w-full py-3 sm:py-4 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 font-bold uppercase hover:bg-neon-blue hover:border-neon-blue hover:text-white dark:hover:text-black dark:hover:shadow-[0_0_20px_rgba(0,243,255,0.4)] transition-all text-xs tracking-widest">
+                        EXPLORE ${categoryId}
+                    </button>
+                </div>
+            `
+        };
+
+        const router = {
+            currentPage: 'home',
+
+            async navigate(pageId) {
+                this.currentPage = pageId;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                document.getElementById('global-loader').classList.remove('hidden');
+                document.getElementById('global-loader').classList.remove('opacity-0');
+
+                const app = document.getElementById('app');
+                const banner = document.getElementById('home-banner');
+                
+                document.querySelectorAll('.nav-link').forEach(el => {
+                    // Reset
+                    el.classList.remove('text-neon-blue', 'text-neon-pink', 'text-neon-green', 'text-neon-purple', 'text-neon-yellow', 'text-gray-900', 'dark:text-white', 'drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]');
+                    
+                    if (el.getAttribute('onclick').includes(pageId)) {
+                        el.classList.add('text-gray-900', 'dark:text-white', 'drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]');
+                    }
+                });
+
+                if (pageId === 'home') {
+                    banner.classList.remove('hidden');
+                    await this.renderHome(app);
+                } else {
+                    banner.classList.add('hidden');
+                    const category = CATEGORIES.find(c => c.id === pageId);
+                    if (category) await this.renderCategoryPage(app, category);
+                }
+
+                setTimeout(() => {
+                    document.getElementById('global-loader').classList.add('opacity-0');
+                    setTimeout(() => {
+                        document.getElementById('global-loader').classList.add('hidden');
+                    }, 500);
+                }, 400); 
+            },
+
+            async renderHome(container) {
+                container.innerHTML = '';
+                
+                for (const cat of CATEGORIES) {
+                    const section = document.createElement('section');
+                    section.className = 'mb-16 sm:mb-20 animate-slide-up w-full';
+                    
+                    let html = Components.sectionHeader(cat);
+                    html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full px-1 sm:px-0">`;
+                    
+                    const posts = await DataService.fetchPosts(cat.id, CONFIG.POST_LIMIT_HOME);
+                    posts.forEach(post => { html += Components.postCard(post); });
+                    
+                    html += `</div>`;
+                    html += Components.mobileViewAllBtn(cat.id);
+                    
+                    section.innerHTML = html;
+                    container.appendChild(section);
+                }
+            },
+
+            async renderCategoryPage(container, category) {
+                const headerHtml = `
+                    <div class="mb-10 sm:mb-12 animate-fade-in text-center px-2 sm:px-0">
+                        <div class="inline-block bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-4 sm:mb-6 shadow-inner">SECTOR FILTER</div>
+                        <h1 class="text-4xl sm:text-6xl md:text-8xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tighter uppercase break-words w-full" style="text-shadow: 0 0 30px ${category.hex}50;">${category.label}</h1>
+                        <div class="w-16 sm:w-24 h-1 sm:h-1.5 ${category.color} mx-auto rounded-full shadow-sm dark:shadow-[0_0_15px_${category.hex}]"></div>
+                    </div>
+                `;
+
+                const posts = await DataService.fetchPosts(category.id, CONFIG.POST_LIMIT_CATEGORY);
+                let gridHtml = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16 animate-slide-up w-full px-1 sm:px-0">`;
+                
+                posts.forEach(post => { gridHtml += Components.postCard(post); });
+                gridHtml += `</div>`;
+
+                const paginationHtml = `
+                    <div class="flex justify-center pb-12 sm:pb-16 w-full px-2 sm:px-0">
+                        <button class="w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/20 text-gray-800 dark:text-white rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-white dark:hover:text-black transition-all shadow-sm dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] uppercase tracking-widest text-xs sm:text-sm disabled:opacity-50" onclick="this.innerHTML = '<i class=\'fas fa-spinner fa-spin mr-2\'></i> SYNCING...'; setTimeout(() => { alert('GRID MAX CAPACITY REACHED.'); this.innerHTML = 'LOAD MORE DATA'; }, 1500);">
+                            LOAD MORE DATA <i class="fas fa-chevron-down ml-2"></i>
+                        </button>
+                    </div>
+                `;
+
+                container.innerHTML = headerHtml + gridHtml + paginationHtml;
+            }
+        };
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Default to dark mode unless the user explicitly selected 'light' previously
+        if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+        } else {
+            html.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const scrollBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollBtn.classList.remove('opacity-0', 'translate-y-10');
+            } else {
+                scrollBtn.classList.add('opacity-0', 'translate-y-10');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+
+        window.showApiDocs = () => document.getElementById('docs-modal').classList.remove('hidden');
+        window.hideApiDocs = () => document.getElementById('docs-modal').classList.add('hidden');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            router.navigate('home');
+        });
+
+    </script>
+</body>
+</html>
