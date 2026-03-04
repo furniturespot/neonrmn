@@ -1,47 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Release Media Network | Global News Portal</title>
     <meta name="description" content="Release Media Network - Your source for Sports, Tech, Business, and Automobile news.">
     
-    <!-- Google Fonts: Modern & Sleek Space Grotesk -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (via CDN for standalone capability) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Tailwind Config for Attractive Neon Colors -->
+    <!-- Tailwind Config for Custom Colors/Fonts -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
                     },
                     colors: {
-                        neon: {
-                            blue: '#00f3ff',
-                            pink: '#ff00ff',
-                            purple: '#bc13fe',
-                            green: '#00ff66',
-                            yellow: '#ffea00',
-                            red: '#ff0055',
-                            dark: '#05050a',
-                            card: '#0f0f16'
+                        brand: {
+                            red: '#D90429', // News Red
+                            dark: '#0F172A',
+                            blue: '#1E40AF',
+                            gray: '#F3F4F6'
                         }
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-out',
                         'slide-up': 'slideUp 0.5s ease-out',
-                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -51,10 +47,6 @@
                         slideUp: {
                             '0%': { transform: 'translateY(20px)', opacity: '0' },
                             '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '1', filter: 'brightness(1)' },
-                            '50%': { opacity: '.8', filter: 'brightness(1.5)' },
                         }
                     }
                 }
@@ -63,45 +55,15 @@
     </script>
 
     <style>
-        /* ATTRACTIVE NEON STYLES */
-        
-        html, body {
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-
-        /* Light Mode Default Styles */
-        body {
-            background-color: #f8fafc;
-            color: #0f172a;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.05), transparent 30%),
-                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.05), transparent 30%);
-            background-attachment: fixed;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Dark Mode Styles */
-        .dark body {
-            background-color: #05050a;
-            color: #e2e8f0;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.04), transparent 30%),
-                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.04), transparent 30%);
-        }
-
-        /* Sleek Glass Navigation */
+        /* Custom Utilities */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .dark .glass-nav {
-            background: rgba(5, 5, 10, 0.75);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
         .line-clamp-2 {
@@ -111,296 +73,238 @@
             overflow: hidden;
         }
         
-        /* Smooth Glowing Loader */
+        /* Loader Animation */
         .loader {
-            border: 3px solid rgba(0,0,0,0.1);
+            border: 4px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 3px solid #00f3ff;
-            border-right: 3px solid #ff00ff;
-            width: 50px;
-            height: 50px;
-            -webkit-animation: spin 1s linear infinite;
+            border-top: 4px solid #D90429;
+            width: 40px;
+            height: 40px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
             animation: spin 1s linear infinite;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
-        }
-        .dark .loader {
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top: 3px solid #00f3ff;
-            border-right: 3px solid #ff00ff;
         }
         
         @keyframes spin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Attractive Neon Cards */
-        .neon-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        }
-        .dark .neon-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: none;
-        }
-        
-        .neon-card:hover {
-            border-color: rgba(0, 243, 255, 0.5);
-            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.2), inset 0 0 20px rgba(0,243,255,0.05);
-            transform: translateY(-6px);
-        }
-        .dark .neon-card:hover {
-            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0,243,255,0.05);
-        }
-
-        /* Image styling inside cards */
-        .img-container {
+        /* Hover Image Zoom */
+        .img-zoom-container {
             overflow: hidden;
-            border-radius: 16px 16px 0 0;
-            position: relative;
         }
-        .img-container img {
-            transition: transform 0.6s ease, filter 0.6s ease;
-            filter: brightness(0.95) contrast(1.05);
+        .img-zoom-container img {
+            transition: transform 0.5s ease;
         }
-        .dark .img-container img {
-            filter: brightness(0.8) contrast(1.1);
-        }
-        .neon-card:hover .img-container img {
-            transform: scale(1.08);
-            filter: brightness(1.1) contrast(1.1);
+        .img-zoom-container:hover img {
+            transform: scale(1.1);
         }
 
-        /* Gradient Text */
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Hide Scrollbar for Carousel */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
         }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(0,0,0,0.05);
-            background: linear-gradient(to top, rgba(240,244,248,1), rgba(248,250,252,1));
-        }
-        .dark footer {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: linear-gradient(to top, rgba(5,5,10,1), rgba(15,15,22,1));
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f8fafc;
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: #05050a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        .dark ::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.1);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 243, 255, 0.5);
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="transition-colors duration-300 font-sans">
+<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-white transition-colors duration-300 font-sans">
+
+    <!-- Notification Popup -->
+    <div id="notification-popup" class="fixed bottom-4 left-4 z-50 bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-5 border border-brand-red/20 transform translate-y-[150%] transition-transform duration-700 max-w-sm hidden">
+        <div class="flex items-start">
+            <div class="flex-shrink-0 bg-brand-red/10 p-3 rounded-full text-brand-red">
+                <i class="fas fa-bell text-xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-1">Stay Updated!</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Allow notifications to get instant alerts on breaking news and top stories.</p>
+                <div class="flex space-x-3">
+                    <button id="btn-allow-notif" class="px-4 py-2 bg-brand-red text-white text-xs font-bold rounded hover:bg-red-700 transition shadow-sm">Allow</button>
+                    <button id="btn-deny-notif" class="px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-xs font-bold rounded hover:bg-gray-200 dark:hover:bg-slate-600 transition">Later</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Loading Screen -->
-    <div id="global-loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-50 dark:bg-neon-dark transition-opacity duration-500 backdrop-blur-md">
-        <div class="loader mb-6"></div>
-        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white uppercase tracking-tighter drop-shadow-md">RMN // BOOTING</h2>
-        <p class="text-xs sm:text-sm font-bold text-neon-blue uppercase tracking-widest mt-2 animate-pulse">Connecting to Grid...</p>
+    <div id="global-loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-slate-900 transition-opacity duration-500">
+        <div class="loader mb-4"></div>
+        <h2 class="text-xl font-serif font-bold text-brand-dark dark:text-white">RMN</h2>
+        <p class="text-sm text-gray-500">Loading Latest News...</p>
     </div>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 bg-white/80 dark:bg-neon-dark/80 backdrop-blur-md text-neon-blue p-3 sm:p-4 rounded-full shadow-[0_0_15px_rgba(0,243,255,0.3)] border border-gray-200 dark:border-neon-blue/30 opacity-0 translate-y-10 transition-all duration-300 hover:bg-neon-blue hover:text-white dark:hover:text-black hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] focus:outline-none" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up text-lg sm:text-xl"></i>
+    <button id="scrollToTop" class="fixed bottom-8 right-8 z-40 bg-brand-red text-white p-3 rounded-full shadow-lg opacity-0 translate-y-10 transition-all duration-300 hover:bg-red-700 focus:outline-none" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Navigation -->
     <header class="fixed w-full top-0 z-40 glass-nav transition-all duration-300" id="main-header">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 sm:h-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <div class="flex-shrink-1 min-w-0 flex items-center cursor-pointer group mr-2" onclick="router.navigate('home')">
-                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-neon-pink to-neon-purple flex items-center justify-center mr-2 sm:mr-3 text-white font-black text-lg sm:text-xl shadow-[0_0_15px_rgba(255,0,255,0.4)] group-hover:shadow-[0_0_25px_rgba(255,0,255,0.6)] transition-all">R</div>
-                    <div class="flex flex-col justify-center truncate">
-                        <span class="font-black text-lg sm:text-2xl tracking-tight leading-none text-gray-900 dark:text-white drop-shadow-sm">RELEASE</span>
-                        <span class="text-[7px] sm:text-[9px] font-bold tracking-widest sm:tracking-[0.2em] text-neon-blue uppercase mt-1">Media Network</span>
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="router.navigate('home')">
+                    <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center mr-3 text-white font-serif font-bold text-xl">R</div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-black text-xl tracking-tight leading-none text-brand-dark dark:text-white">RELEASE</span>
+                        <span class="text-xs font-bold tracking-widest text-brand-red uppercase">Media Network</span>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
                 <nav class="hidden lg:flex space-x-6">
-                    <a href="#" onclick="router.navigate('home')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-wide">Home</a>
-                    <a href="#" onclick="router.navigate('sports')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-pink dark:hover:text-neon-pink transition uppercase tracking-wide">Sports</a>
-                    <a href="#" onclick="router.navigate('automobile')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-wide">Automobile</a>
-                    <a href="#" onclick="router.navigate('business')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-green dark:hover:text-neon-green transition uppercase tracking-wide">Business</a>
-                    <a href="#" onclick="router.navigate('tech')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-purple dark:hover:text-neon-purple transition uppercase tracking-wide">Tech</a>
-                    <a href="#" onclick="router.navigate('films')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-yellow dark:hover:text-neon-yellow transition uppercase tracking-wide">Films</a>
-                    <a href="#" onclick="router.navigate('education')" class="nav-link text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-wide">Education</a>
+                    <a href="#" onclick="router.navigate('home')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Home</a>
+                    <a href="#" onclick="router.navigate('sports')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Sports</a>
+                    <a href="#" onclick="router.navigate('automobile')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Automobile</a>
+                    <a href="#" onclick="router.navigate('business')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Business</a>
+                    <a href="#" onclick="router.navigate('tech')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Tech & AI</a>
+                    <a href="#" onclick="router.navigate('education')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Education</a>
                 </nav>
 
                 <!-- Right Actions -->
-                <div class="flex items-center space-x-3 sm:space-x-4 flex-shrink-0">
+                <div class="flex items-center space-x-4">
                     <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center hover:bg-neon-blue hover:text-white dark:hover:text-black hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all text-gray-600 dark:text-gray-400 focus:outline-none">
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition focus:outline-none">
                         <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:inline"></i>
-                    </button>
-                    <!-- Subscribe Button (Desktop) -->
-                    <button class="hidden md:block bg-transparent text-neon-blue border border-neon-blue/50 px-5 py-2 text-sm font-bold rounded-full transition-all shadow-[0_0_10px_rgba(0,243,255,0.1)] hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:bg-neon-blue hover:text-white dark:hover:text-black uppercase tracking-wider">
-                        Subscribe
+                        <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
                     </button>
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden p-2 text-gray-700 dark:text-white hover:text-neon-blue focus:outline-none transition-colors">
-                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-md text-gray-700 dark:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 dark:bg-neon-dark/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 absolute w-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-            <div class="px-4 pt-4 pb-6 space-y-2">
-                <a href="#" onclick="router.navigate('home')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-blue dark:hover:text-neon-blue uppercase tracking-wide transition">Home</a>
-                <a href="#" onclick="router.navigate('sports')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-pink dark:hover:text-neon-pink uppercase tracking-wide transition">Sports</a>
-                <a href="#" onclick="router.navigate('automobile')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-blue dark:hover:text-neon-blue uppercase tracking-wide transition">Automobile</a>
-                <a href="#" onclick="router.navigate('business')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-green dark:hover:text-neon-green uppercase tracking-wide transition">Business</a>
-                <a href="#" onclick="router.navigate('tech')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-purple dark:hover:text-neon-purple uppercase tracking-wide transition">Tech & AI</a>
-                <a href="#" onclick="router.navigate('films')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-yellow dark:hover:text-neon-yellow uppercase tracking-wide transition">Films</a>
-                <a href="#" onclick="router.navigate('education')" class="block px-4 py-3 rounded-lg text-lg font-bold text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 hover:text-neon-blue dark:hover:text-neon-blue uppercase tracking-wide transition">Education</a>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800 absolute w-full shadow-xl">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" onclick="router.navigate('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Home</a>
+                <a href="#" onclick="router.navigate('sports')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Sports</a>
+                <a href="#" onclick="router.navigate('automobile')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Automobile</a>
+                <a href="#" onclick="router.navigate('business')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Business</a>
+                <a href="#" onclick="router.navigate('tech')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Tech & AI</a>
+                <a href="#" onclick="router.navigate('education')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Education</a>
             </div>
         </div>
     </header>
 
     <!-- Main Content Area -->
-    <main class="pt-24 sm:pt-28 min-h-screen pb-12 overflow-hidden w-full relative">
+    <main class="pt-24 min-h-screen pb-12">
         
         <!-- Header Banner (Home Only) -->
-        <div id="home-banner" class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mb-12 sm:mb-16 hidden w-full">
-            <div class="text-center py-10 sm:py-16 relative overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 w-full neon-card">
-                <!-- Inner Glowing Background -->
-                <div class="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-neon-dark dark:via-[#100a20] dark:to-[#0a1020] opacity-90"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-neon-pink/10 dark:bg-neon-pink/20 rounded-full blur-[80px] pointer-events-none"></div>
-                
-                <h1 class="text-[9vw] sm:text-5xl md:text-7xl font-black mb-2 sm:mb-4 relative z-10 tracking-tighter leading-[1.1] break-words px-2 w-full text-gradient bg-gradient-to-r from-neon-blue via-[#b4a0ff] to-neon-pink" style="filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));">
-                    TODAY'S HEADLINES
-                </h1>
-                <p class="text-[3.5vw] sm:text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto relative z-10 uppercase tracking-widest px-2 sm:px-4 leading-snug">
-                    Real-time drops from Sports, Tech, Cinema & Finance.
-                </p>
-                <div class="mt-5 sm:mt-8 text-[10px] sm:text-sm font-bold tracking-widest uppercase text-neon-green border border-neon-green/30 bg-neon-green/10 rounded-full inline-block px-4 py-1.5 sm:py-2 relative z-10 shadow-[0_0_15px_rgba(0,255,102,0.2)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+        <div id="home-banner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 hidden">
+            <div class="text-center py-10 bg-gradient-to-r from-brand-dark to-brand-blue rounded-3xl text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 relative z-10">RELEASE MEDIA NETWORK</h1>
+                <p class="text-lg text-blue-100 max-w-2xl mx-auto relative z-10">Real-time updates from the world of Sports, Technology, Cinema and Finance.</p>
+                <div class="mt-6 text-sm font-semibold tracking-wider uppercase text-blue-200 relative z-10">
                     <span id="current-date"></span>
                 </div>
             </div>
         </div>
 
         <!-- App Container for SPA Views -->
-        <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Content Injected via JS -->
         </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="text-gray-900 dark:text-white pt-16 pb-8 relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-neon-purple/50 to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 sm:gap-12 mb-12">
+    <footer class="bg-brand-dark text-white pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
                 <!-- Brand -->
-                <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center mb-6">
-                        <div class="w-8 h-8 rounded bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center mr-3 font-black text-xl text-white shadow-[0_0_10px_rgba(0,243,255,0.4)]">R</div>
-                        <span class="font-black text-2xl tracking-tighter text-gray-900 dark:text-white">RELEASE MEDIA</span>
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-brand-red rounded flex items-center justify-center mr-2 font-serif font-bold text-lg">R</div>
+                        <span class="font-serif font-bold text-xl">Release Media</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 font-medium text-sm leading-relaxed mb-6 uppercase tracking-wider">
-                        Empowering the grid with real-time, raw, and unfiltered updates.
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Empowering the world with real-time, accurate, and unbiased news. Connecting you to the stories that matter.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-blue hover:text-white dark:hover:text-black hover:border-neon-blue hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-blue hover:text-white dark:hover:text-black hover:border-neon-blue hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-pink hover:text-white dark:hover:text-black hover:border-neon-pink hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center hover:bg-neon-red hover:text-white dark:hover:text-black hover:border-neon-red hover:shadow-[0_0_15px_rgba(255,0,85,0.5)] hover:-translate-y-1 transition-all text-gray-600 dark:text-gray-400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-twitter text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-youtube text-sm"></i></a>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Link Tree</h3>
-                    <ul class="space-y-3 text-sm font-medium uppercase tracking-wider">
-                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> About Us</a></li>
-                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Collab</a></li>
-                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Careers</a></li>
-                        <li><a href="#" onclick="showApiDocs()" class="text-neon-green hover:text-gray-900 dark:hover:text-white transition flex items-center gap-2"><i class="fas fa-terminal text-xs"></i> API Docs</a></li>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Quick Links</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Advertise With Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" onclick="showContactModal()" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" onclick="showApiDocs()" class="hover:text-white transition text-brand-red mt-2 block">API Documentation</a></li>
                     </ul>
                 </div>
 
                 <!-- Categories -->
                 <div>
-                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Sectors</h3>
-                    <ul class="space-y-3 text-sm font-medium uppercase tracking-wider">
-                        <li><a href="#" onclick="router.navigate('sports')" class="text-gray-600 dark:text-gray-400 hover:text-neon-pink dark:hover:text-neon-pink transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Sports</a></li>
-                        <li><a href="#" onclick="router.navigate('tech')" class="text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Tech</a></li>
-                        <li><a href="#" onclick="router.navigate('business')" class="text-gray-600 dark:text-gray-400 hover:text-neon-green dark:hover:text-neon-green transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Business</a></li>
-                        <li><a href="#" onclick="router.navigate('films')" class="text-gray-600 dark:text-gray-400 hover:text-neon-yellow dark:hover:text-neon-yellow transition flex items-center gap-2"><i class="fas fa-angle-right text-neon-purple text-xs"></i> Entertainment</a></li>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Categories</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" onclick="router.navigate('sports')" class="hover:text-white transition">Sports</a></li>
+                        <li><a href="#" onclick="router.navigate('tech')" class="hover:text-white transition">Technology</a></li>
+                        <li><a href="#" onclick="router.navigate('business')" class="hover:text-white transition">Business</a></li>
+                        <li><a href="#" onclick="router.navigate('education')" class="hover:text-white transition">Education</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal (New Section) -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Legal</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Disclaimer</a></li>
                     </ul>
                 </div>
 
                 <!-- Newsletter -->
-                <div>
-                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Join Grid</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-xs mb-4 uppercase tracking-wider">Get raw updates delivered straight to you.</p>
-                    <form class="flex flex-col space-y-3" onsubmit="event.preventDefault(); alert('SYNC COMPLETE!');">
-                        <input type="email" placeholder="ENTER EMAIL..." class="bg-white dark:bg-white/5 text-gray-900 dark:text-neon-blue px-4 py-3 rounded-lg border border-gray-300 dark:border-white/10 focus:outline-none focus:border-neon-blue focus:shadow-[0_0_10px_rgba(0,243,255,0.2)] text-sm uppercase w-full transition-all">
-                        <button type="submit" class="bg-neon-blue text-white dark:text-black px-4 py-3 rounded-lg font-bold text-sm transition-all hover:opacity-90 dark:hover:bg-white hover:shadow-[0_0_15px_rgba(0,243,255,0.6)] uppercase tracking-widest w-full">Subscribe</button>
+                <div class="md:col-span-2 lg:col-span-1">
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Newsletter</h3>
+                    <p class="text-gray-400 text-sm mb-4">Get the latest headlines delivered to your inbox.</p>
+                    <form id="subscribe-form" class="flex flex-col space-y-3">
+                        <input type="tel" id="nl-mobile" required placeholder="Mobile Number" pattern="[0-9]{10,15}" title="Enter valid mobile number" class="bg-slate-800 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red text-sm border border-slate-700">
+                        <input type="email" id="nl-email" required placeholder="Your email address" class="bg-slate-800 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red text-sm border border-slate-700">
+                        <button type="submit" id="nl-submit" class="bg-brand-red hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm transition uppercase tracking-wide">Subscribe</button>
                     </form>
                 </div>
             </div>
             
-            <div class="border-t border-gray-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-medium uppercase tracking-widest text-gray-500">
-                <p>&copy; 2026 RELEASE MEDIA NETWORK.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-neon-blue transition">Privacy</a>
-                    <a href="#" class="hover:text-neon-blue transition">Terms</a>
-                    <a href="#" class="hover:text-neon-blue transition">System</a>
-                </div>
+            <div class="border-t border-slate-800 pt-8 flex justify-center items-center text-xs text-gray-500">
+                <p>&copy; 2026 Release Media Network Private Limited. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- Documentation Modal -->
-    <div id="docs-modal" class="fixed inset-0 z-50 hidden bg-black/60 dark:bg-black/80 flex items-center justify-center p-3 sm:p-4 backdrop-blur-md">
-        <div class="bg-white dark:bg-neon-dark border border-gray-200 dark:border-white/10 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl dark:shadow-[0_0_30px_rgba(0,243,255,0.2)]">
-            <div class="p-5 sm:p-8">
-                <div class="flex justify-between items-center mb-6 border-b border-gray-200 dark:border-white/10 pb-4 gap-4">
-                    <h2 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white uppercase tracking-widest dark:text-glow">API Integration</h2>
-                    <button onclick="hideApiDocs()" class="text-gray-500 hover:text-neon-red transition text-3xl sm:text-4xl">&times;</button>
+    <div id="docs-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-80 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold font-serif text-brand-dark dark:text-white">Instagram API Integration Guide</h2>
+                    <button onclick="hideApiDocs()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
                 </div>
-                <div class="prose dark:prose-invert text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">
-                    <p class="font-bold uppercase text-neon-blue tracking-wider mb-4">System Connect Protocol:</p>
-                    <ol class="list-decimal pl-5 space-y-3 marker:text-neon-purple">
-                        <li>For each sector (Sports, Tech, etc.), distinct access tokens are required.</li>
-                        <li>Access <a href="https://developers.facebook.com/" target="_blank" class="text-neon-blue underline hover:text-gray-900 dark:hover:text-white transition">Meta Developer Grid</a>.</li>
-                        <li>Generate a <strong class="text-gray-900 dark:text-white">User Token</strong> and <strong class="text-gray-900 dark:text-white">User ID</strong>.</li>
-                        <li>Locate the <code class="bg-gray-100 dark:bg-white/10 text-neon-pink px-1 rounded">CONFIG.ACCOUNTS</code> matrix in the source.</li>
-                        <li>Inject the tokens.</li>
-                        <li>Set <code class="bg-gray-100 dark:bg-white/10 text-neon-pink px-1 rounded">USE_MOCK_DATA: false</code> to sync live.</li>
+                <div class="prose dark:prose-invert text-sm text-gray-600 dark:text-gray-300">
+                    <p class="font-bold">How to connect 7 Different Instagram Accounts:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>For each category (Sports, Tech, etc.), you need a separate Instagram account (or at least separate tokens if managing multiple via Meta).</li>
+                        <li>Go to <a href="https://developers.facebook.com/" target="_blank" class="text-blue-500 underline">Meta for Developers</a>.</li>
+                        <li>Generate a <strong>User Token</strong> and <strong>User ID</strong> for each specific Instagram account you want to source news from.</li>
+                        <li>Open this file code and locate the <code>CONFIG.ACCOUNTS</code> object.</li>
+                        <li>Paste the specific <code>token</code> and <code>userId</code> into the corresponding category slot.</li>
+                        <li>Set <code>USE_MOCK_DATA: false</code> to activate the live connection.</li>
                     </ol>
-                    <div class="mt-6 p-4 sm:p-6 bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-lg text-neon-green font-mono text-xs sm:text-sm overflow-x-auto shadow-inner">
+                    <div class="mt-4 p-4 bg-gray-100 dark:bg-slate-800 rounded">
                         <code>
                             ACCOUNTS: {<br>
                             &nbsp;&nbsp;sports: { token: '...', userId: '...' },<br>
@@ -410,9 +314,36 @@
                         </code>
                     </div>
                 </div>
-                <div class="mt-8 text-right">
-                    <button onclick="hideApiDocs()" class="px-5 sm:px-6 py-2.5 sm:py-3 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-white rounded-lg hover:bg-neon-red hover:text-white hover:border-neon-red dark:hover:shadow-[0_0_15px_rgba(255,0,85,0.5)] font-bold uppercase transition tracking-widest text-sm sm:text-base">Close Matrix</button>
+                <div class="mt-6 text-right">
+                    <button onclick="hideApiDocs()" class="px-4 py-2 bg-brand-dark text-white rounded hover:bg-opacity-90">Close</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-80 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-lg max-w-lg w-full shadow-2xl overflow-hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold font-serif text-brand-dark dark:text-white">Contact Us</h2>
+                    <button onclick="hideContactModal()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+                </div>
+                <form id="contact-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                        <input type="text" id="contact-name" required placeholder="John Doe" class="w-full bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red border border-gray-200 dark:border-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                        <input type="email" id="contact-email" required placeholder="john@example.com" class="w-full bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red border border-gray-200 dark:border-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                        <textarea id="contact-message" required rows="4" placeholder="How can we help you?" class="w-full bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red border border-gray-200 dark:border-slate-700"></textarea>
+                    </div>
+                    <button type="submit" id="contact-submit" class="w-full bg-brand-red hover:bg-red-700 text-white px-4 py-3 rounded font-bold transition shadow-md">Send Message</button>
+                </form>
             </div>
         </div>
     </div>
@@ -421,38 +352,41 @@
     <script>
         /**
          * CONFIGURATION
+         * Toggle USE_MOCK_DATA to 'false' to enable real Instagram API calls.
+         * You must provide a Token and User ID for EACH category's specific Instagram account.
          */
         const CONFIG = {
             USE_MOCK_DATA: true, 
             
+            // Configuration for each separate Instagram Account
             ACCOUNTS: {
                 sports:     { token: '', userId: '' },
                 automobile: { token: '', userId: '' },
                 business:   { token: '', userId: '' },
                 tech:       { token: '', userId: '' },
                 agriculture:{ token: '', userId: '' },
-                films:      { token: '', userId: '' },
-                education:  { token: '', userId: '' }
+                education:  { token: '', userId: '' },
+                reels:      { token: '', userId: '' } // Specific account for the Reels section
             },
 
-            POST_LIMIT_HOME: 4,         
-            POST_LIMIT_CATEGORY: 12     
+            POST_LIMIT_HOME: 4,         // Posts per section on homepage
+            POST_LIMIT_CATEGORY: 12     // Posts on category pages
         };
 
-        // Categories Configuration - WITH GLOWING NEON HEXES
+        // Categories Configuration
         const CATEGORIES = [
-            { id: 'sports', label: 'Sports', color: 'bg-[#ff0055]', hex: '#ff0055', keywords: 'sports,stadium,athlete' },
-            { id: 'automobile', label: 'Automobile', color: 'bg-[#00f3ff]', hex: '#00f3ff', keywords: 'supercar,luxury car' },
-            { id: 'business', label: 'Business', color: 'bg-[#00ff66]', hex: '#00ff66', keywords: 'business meeting,finance' },
-            { id: 'tech', label: 'Tech & AI', color: 'bg-[#bc13fe]', hex: '#bc13fe', keywords: 'cyberpunk,artificial intelligence,chip' },
-            { id: 'agriculture', label: 'Agriculture', color: 'bg-[#ffea00]', hex: '#ffea00', keywords: 'agriculture,farm,wheat' },
-            { id: 'films', label: 'Films', color: 'bg-[#ff00ff]', hex: '#ff00ff', keywords: 'cinema,movie theater,film' },
-            { id: 'education', label: 'Education', color: 'bg-[#00aaff]', hex: '#00aaff', keywords: 'university,library' }
+            { id: 'sports', label: 'Sports', color: 'bg-orange-600', keywords: 'sports,stadium,athlete,soccer', icon: 'fa-futbol' },
+            { id: 'automobile', label: 'Automobile', color: 'bg-blue-600', keywords: 'supercar,luxury car,automotive', icon: 'fa-car' },
+            { id: 'business', label: 'Business', color: 'bg-emerald-600', keywords: 'business meeting,finance,stock market', icon: 'fa-briefcase' },
+            { id: 'tech', label: 'Tech & AI', color: 'bg-indigo-600', keywords: 'artificial intelligence,robot,computer,chip', icon: 'fa-microchip' },
+            { id: 'agriculture', label: 'Agriculture', color: 'bg-green-600', keywords: 'agriculture,farm,harvest,wheat', icon: 'fa-tractor' },
+            { id: 'education', label: 'Education', color: 'bg-yellow-600', keywords: 'university,library,student', icon: 'fa-graduation-cap' }
         ];
 
-        const generateMockPosts = (category, count) => {
+        // --- MOCK DATA GENERATOR (High Quality Placeholders) ---
+        const generateMockPosts = (category, count, isReel = false) => {
             const posts = [];
-            const keywords = CATEGORIES.find(c => c.id === category)?.keywords || 'neon';
+            const keywords = CATEGORIES.find(c => c.id === category)?.keywords || 'news,trending,viral';
             
             const titles = [
                 `Global summit on ${category} reaches new milestone today.`,
@@ -470,11 +404,16 @@
             ];
 
             for (let i = 0; i < count; i++) {
+                // For reels, use 9:16 aspect ratio
+                const width = isReel ? 400 : 600;
+                const height = isReel ? 700 : 600;
+
                 posts.push({
                     id: `post-${category}-${i}`,
-                    imageUrl: `https://source.unsplash.com/600x600/?${keywords.split(',')[i % 3]},neon,dark,sig=${Math.random()}`,
-                    fallbackImage: `https://picsum.photos/seed/${category}${i}/600/600`, 
-                    caption: titles[i % titles.length] + " #ReleaseMedia #" + category,
+                    imageUrl: `https://source.unsplash.com/${width}x${height}/?${keywords.split(',')[i % 3]},sig=${Math.random()}`,
+                    // Fallback to picsum if unsplash source is flaky or strict
+                    fallbackImage: `https://picsum.photos/seed/${category}${i}/${width}/${height}`, 
+                    caption: titles[i % titles.length] + " #ReleaseMedia #" + category + " #News",
                     permalink: '#',
                     timestamp: new Date(Date.now() - Math.floor(Math.random() * 1000000000)).toISOString()
                 });
@@ -482,13 +421,16 @@
             return posts;
         };
 
+        // --- API & DATA HANDLING ---
+
         class DataService {
-            static async fetchPosts(categoryId, limit) {
+            static async fetchPosts(categoryId, limit, isReel = false) {
                 if (CONFIG.USE_MOCK_DATA) {
+                    // Simulate network delay
                     return new Promise(resolve => {
                         setTimeout(() => {
-                            resolve(generateMockPosts(categoryId, limit));
-                        }, 800); 
+                            resolve(generateMockPosts(categoryId, limit, isReel));
+                        }, 800); // 800ms delay for realism
                     });
                 } else {
                     return this.fetchFromInstagram(categoryId, limit);
@@ -497,15 +439,34 @@
 
             static async fetchFromInstagram(categoryId, limit) {
                 try {
+                    // Get specific credentials for this category
                     const creds = CONFIG.ACCOUNTS[categoryId];
-                    if (!creds || !creds.token || !creds.userId) return generateMockPosts(categoryId, limit);
+                    
+                    if (!creds || !creds.token || !creds.userId) {
+                        console.warn(`No Instagram credentials found for ${categoryId}, falling back to mock data.`);
+                        return generateMockPosts(categoryId, limit);
+                    }
+
+                    // 1. Fetch User Media using specific account credentials
                     const url = `https://graph.instagram.com/${creds.userId}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${creds.token}`;
                     const response = await fetch(url);
-                    if (!response.ok) throw new Error(`API Error`);
-                    const data = await response.json();
-                    if (!data.data) throw new Error("No data");
+                    
+                    if (!response.ok) {
+                        throw new Error(`Instagram API Error: ${response.statusText}`);
+                    }
 
-                    return data.data.slice(0, limit).map(post => ({
+                    const data = await response.json();
+
+                    if (!data.data) throw new Error("API returned no data");
+
+                    // Ensure Reels section only grabs VIDEO media types
+                    let filteredData = data.data;
+                    if (categoryId === 'reels') {
+                        filteredData = data.data.filter(post => post.media_type === 'VIDEO');
+                    }
+
+                    // 2. Map to internal format
+                    return filteredData.slice(0, limit).map(post => ({
                         id: post.id,
                         imageUrl: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
                         caption: post.caption || 'No caption available',
@@ -513,83 +474,156 @@
                         timestamp: post.timestamp
                     }));
                 } catch (error) {
+                    console.error(`Instagram fetch failed for ${categoryId}:`, error);
+                    // Fallback to mock data if specific account fails (prevents breaking whole site)
                     return generateMockPosts(categoryId, limit);
                 }
             }
         }
 
+        // --- UI COMPONENTS ---
         const Components = {
             postCard: (post) => {
                 const date = new Date(post.timestamp).toLocaleDateString();
+                // Ensure image exists or use fallback
                 const img = post.imageUrl.includes('unsplash') ? post.imageUrl : post.fallbackImage;
                 
                 return `
-                <div class="neon-card group flex flex-col h-full relative mx-1 sm:mx-0 w-full">
-                    <div class="relative h-48 sm:h-56 img-container bg-gray-100 dark:bg-[#05050a]">
-                        <img src="${img}" alt="News Image" class="w-full h-full object-cover opacity-90 group-hover:opacity-100" onerror="this.src='https://placehold.co/600x400/05050a/00f3ff?text=Signal+Lost'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-[#05050a] to-transparent"></div>
-                        <div class="absolute top-3 right-3 bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white backdrop-blur-md text-[10px] font-bold px-2 py-1 rounded shadow-sm dark:shadow-[0_0_10px_rgba(0,0,0,0.5)] uppercase tracking-widest flex items-center gap-1 dark:group-hover:border-[#ff00ff] dark:group-hover:text-[#ff00ff] transition-colors">
-                            <i class="fab fa-instagram"></i> INSTA
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-slate-700 flex flex-col h-full group">
+                    <div class="relative h-48 overflow-hidden img-zoom-container bg-gray-200 dark:bg-slate-700">
+                        <img src="${img}" alt="News Image" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400?text=News+Image'">
+                        <div class="absolute top-2 right-2 bg-brand-dark/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-sm">
+                            <i class="fab fa-instagram"></i> INSTAGRAM
                         </div>
                     </div>
-                    <div class="p-4 sm:p-5 flex flex-col flex-grow z-10 -mt-6">
-                        <div class="flex items-center text-[10px] sm:text-xs font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-widest">
-                            <i class="far fa-clock mr-2 text-neon-blue"></i> ${date}
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center text-xs text-gray-400 mb-2">
+                            <i class="far fa-clock mr-1"></i> ${date}
                         </div>
-                        <h3 class="text-base sm:text-lg font-bold text-gray-800 dark:text-gray-200 mb-5 line-clamp-2 leading-snug flex-grow tracking-wide group-hover:text-neon-blue transition-colors drop-shadow-sm dark:drop-shadow-md">
+                        <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3 line-clamp-2 leading-relaxed flex-grow">
                             ${post.caption}
                         </h3>
-                        <a href="${post.permalink}" target="_blank" class="mt-auto block w-full text-center py-2.5 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 text-xs sm:text-sm font-bold hover:bg-neon-blue hover:text-white dark:hover:text-black hover:border-neon-blue transition-all uppercase tracking-widest shadow-sm dark:shadow-[0_0_0_rgba(0,243,255,0)] dark:group-hover:shadow-[0_0_15px_rgba(0,243,255,0.4)]">
-                            READ POST <i class="fas fa-arrow-right ml-1.5 sm:ml-2 text-[10px]"></i>
+                        <a href="${post.permalink}" target="_blank" class="mt-auto flex items-center justify-center w-full py-2 border border-brand-red text-brand-red rounded-lg text-sm font-bold hover:bg-brand-red hover:text-white transition-colors duration-300 group-hover:shadow-md">
+                            Read Post <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                         </a>
+                    </div>
+                    
+                    <!-- Social Share Strip -->
+                    <div class="px-4 py-3 bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-slate-700 flex justify-between items-center text-gray-400">
+                        <i class="fas fa-share-nodes text-lg hover:text-brand-red transition cursor-pointer" title="Share"></i>
+                        <div class="flex space-x-3 text-sm">
+                            <a href="#" class="hover:text-brand-blue hover:scale-110 transition transform" title="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="hover:text-gray-900 dark:hover:text-white hover:scale-110 transition transform" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#" class="hover:text-gray-900 dark:hover:text-white hover:scale-110 transition transform" title="Threads"><i class="fa-brands fa-threads"></i></a>
+                            <a href="#" class="hover:text-blue-600 hover:scale-110 transition transform" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="hover:text-green-500 hover:scale-110 transition transform" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
                     </div>
                 </div>
                 `;
             },
 
-            sectionHeader: (category) => `
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 sm:mb-8 border-b border-gray-200 dark:border-white/10 pb-3 w-full px-1 sm:px-0">
-                    <div class="flex items-center max-w-full">
-                        <div class="w-1.5 sm:w-2 h-8 sm:h-10 ${category.color} mr-3 sm:mr-4 rounded-full shadow-sm dark:shadow-[0_0_12px_${category.hex}]"></div>
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white uppercase tracking-tighter break-words leading-none truncate max-w-[85vw]">
+            sectionHeader: (category) => {
+                // Extract Tailwind text color from background color class
+                const textColorClass = category.color.replace('bg-', 'text-');
+                return `
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-gray-200 dark:border-slate-700 pb-2">
+                    <div class="flex items-center">
+                        <div class="mr-3 ${textColorClass} animate-[spin_4s_linear_infinite] flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L22 20H2L12 2Z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 dark:text-white uppercase tracking-tight">
                             ${category.label}
                         </h2>
                     </div>
-                    <button onclick="router.navigate('${category.id}')" class="hidden md:flex items-center text-xs font-bold text-gray-600 dark:text-gray-400 hover:text-neon-blue dark:hover:text-neon-blue transition uppercase tracking-widest mt-4 md:mt-0 bg-transparent">
-                        VIEW ALL <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    <button onclick="router.navigate('${category.id}')" class="hidden md:flex items-center text-sm font-bold text-brand-red hover:text-brand-dark dark:hover:text-white transition">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            `;
+            },
+
+            mobileViewAllBtn: (categoryId) => `
+                <div class="mt-6 text-center md:hidden">
+                    <button onclick="router.navigate('${categoryId}')" class="w-full py-3 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 font-bold rounded-lg hover:bg-brand-red hover:text-white transition shadow-sm">
+                        View All ${categoryId.toUpperCase()}
                     </button>
                 </div>
             `,
 
-            mobileViewAllBtn: (categoryId) => `
-                <div class="mt-6 sm:mt-8 text-center md:hidden px-2 sm:px-0 w-full">
-                    <button onclick="router.navigate('${categoryId}')" class="w-full py-3 sm:py-4 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 font-bold uppercase hover:bg-neon-blue hover:border-neon-blue hover:text-white dark:hover:text-black dark:hover:shadow-[0_0_20px_rgba(0,243,255,0.4)] transition-all text-xs tracking-widest">
-                        EXPLORE ${categoryId}
-                    </button>
-                </div>
-            `
+            reelsCarousel: (posts) => {
+                let html = `
+                <section class="mb-16 animate-slide-up">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-gray-200 dark:border-slate-700 pb-2">
+                        <div class="flex items-center">
+                            <div class="mr-3 text-brand-red animate-[spin_4s_linear_infinite] flex items-center justify-center">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L22 20H2L12 2Z" />
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 dark:text-white uppercase tracking-tight">
+                                Trending Reels
+                            </h2>
+                        </div>
+                    </div>
+                    
+                    <div class="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-6 scrollbar-hide" style="scroll-behavior: smooth;">
+                `;
+                
+                posts.forEach(post => {
+                    const img = post.imageUrl.includes('unsplash') ? post.imageUrl : post.fallbackImage;
+                    html += `
+                        <div class="min-w-[220px] md:min-w-[260px] aspect-[9/16] snap-center flex-shrink-0 bg-slate-800 rounded-2xl overflow-hidden relative group shadow-lg border border-gray-200 dark:border-slate-700 cursor-pointer hover:shadow-2xl transition-all duration-300" onclick="window.open('${post.permalink}', '_blank')">
+                            <img src="${img}" alt="Reel" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
+                            
+                            <!-- Reel Badge -->
+                            <div class="absolute top-3 right-3 bg-brand-red/90 text-white text-[10px] font-bold px-2 py-1 rounded-md backdrop-blur-md flex items-center shadow-lg pointer-events-none">
+                                <i class="fab fa-instagram mr-1"></i> REEL
+                            </div>
+                            
+                            <!-- Play Overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white text-2xl border border-white/50">
+                                    <i class="fas fa-play ml-1"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Caption -->
+                            <div class="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
+                                <p class="text-sm font-semibold line-clamp-3 mb-1 text-shadow-sm">${post.caption}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></section>`;
+                return html;
+            }
         };
+
+        // --- ROUTING & RENDERING ENGINE ---
 
         const router = {
             currentPage: 'home',
 
             async navigate(pageId) {
                 this.currentPage = pageId;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo(0, 0);
                 
+                // Show loader
                 document.getElementById('global-loader').classList.remove('hidden');
                 document.getElementById('global-loader').classList.remove('opacity-0');
 
                 const app = document.getElementById('app');
                 const banner = document.getElementById('home-banner');
                 
+                // Update Nav Active State
                 document.querySelectorAll('.nav-link').forEach(el => {
-                    // Reset
-                    el.classList.remove('text-neon-blue', 'text-neon-pink', 'text-neon-green', 'text-neon-purple', 'text-neon-yellow', 'text-gray-900', 'dark:text-white', 'drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]');
-                    
-                    if (el.getAttribute('onclick').includes(pageId)) {
-                        el.classList.add('text-gray-900', 'dark:text-white', 'drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]');
-                    }
+                    if (el.getAttribute('onclick').includes(pageId)) el.classList.add('text-brand-red');
+                    else el.classList.remove('text-brand-red');
                 });
 
                 if (pageId === 'home') {
@@ -601,12 +635,13 @@
                     if (category) await this.renderCategoryPage(app, category);
                 }
 
+                // Hide loader
                 setTimeout(() => {
                     document.getElementById('global-loader').classList.add('opacity-0');
                     setTimeout(() => {
                         document.getElementById('global-loader').classList.add('hidden');
                     }, 500);
-                }, 400); 
+                }, 400); // Slight artificial delay for smooth transition
             },
 
             async renderHome(container) {
@@ -614,13 +649,19 @@
                 
                 for (const cat of CATEGORIES) {
                     const section = document.createElement('section');
-                    section.className = 'mb-16 sm:mb-20 animate-slide-up w-full';
+                    section.className = 'mb-16 animate-slide-up';
                     
+                    // Header
                     let html = Components.sectionHeader(cat);
-                    html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full px-1 sm:px-0">`;
                     
+                    // Grid
+                    html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">`;
+                    
+                    // Data
                     const posts = await DataService.fetchPosts(cat.id, CONFIG.POST_LIMIT_HOME);
-                    posts.forEach(post => { html += Components.postCard(post); });
+                    posts.forEach(post => {
+                        html += Components.postCard(post);
+                    });
                     
                     html += `</div>`;
                     html += Components.mobileViewAllBtn(cat.id);
@@ -628,27 +669,38 @@
                     section.innerHTML = html;
                     container.appendChild(section);
                 }
+
+                // Render Reels Carousel Section at the bottom of the home page
+                const reelsPosts = await DataService.fetchPosts('reels', 8, true); // Fetch 8 mock/real reels
+                const reelsHtml = Components.reelsCarousel(reelsPosts);
+                container.insertAdjacentHTML('beforeend', reelsHtml);
             },
 
             async renderCategoryPage(container, category) {
+                // Header Breadcrumb
                 const headerHtml = `
-                    <div class="mb-10 sm:mb-12 animate-fade-in text-center px-2 sm:px-0">
-                        <div class="inline-block bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-4 sm:mb-6 shadow-inner">SECTOR FILTER</div>
-                        <h1 class="text-4xl sm:text-6xl md:text-8xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tighter uppercase break-words w-full" style="text-shadow: 0 0 30px ${category.hex}50;">${category.label}</h1>
-                        <div class="w-16 sm:w-24 h-1 sm:h-1.5 ${category.color} mx-auto rounded-full shadow-sm dark:shadow-[0_0_15px_${category.hex}]"></div>
+                    <div class="mb-12 animate-fade-in text-center mt-6">
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-black text-gray-900 dark:text-white mb-6 tracking-tight drop-shadow-sm">
+                            ${category.label}
+                        </h1>
+                        <div class="w-24 h-1.5 ${category.color} mx-auto rounded-full"></div>
                     </div>
                 `;
 
+                // Grid
                 const posts = await DataService.fetchPosts(category.id, CONFIG.POST_LIMIT_CATEGORY);
-                let gridHtml = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16 animate-slide-up w-full px-1 sm:px-0">`;
+                let gridHtml = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12 animate-slide-up">`;
                 
-                posts.forEach(post => { gridHtml += Components.postCard(post); });
+                posts.forEach(post => {
+                    gridHtml += Components.postCard(post);
+                });
                 gridHtml += `</div>`;
 
+                // Pagination (Visual Only)
                 const paginationHtml = `
-                    <div class="flex justify-center pb-12 sm:pb-16 w-full px-2 sm:px-0">
-                        <button class="w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/20 text-gray-800 dark:text-white rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-white dark:hover:text-black transition-all shadow-sm dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] uppercase tracking-widest text-xs sm:text-sm disabled:opacity-50" onclick="this.innerHTML = '<i class=\'fas fa-spinner fa-spin mr-2\'></i> SYNCING...'; setTimeout(() => { alert('GRID MAX CAPACITY REACHED.'); this.innerHTML = 'LOAD MORE DATA'; }, 1500);">
-                            LOAD MORE DATA <i class="fas fa-chevron-down ml-2"></i>
+                    <div class="flex justify-center pb-12">
+                        <button class="px-6 py-3 bg-brand-dark text-white rounded-full font-bold hover:bg-brand-red transition shadow-lg flex items-center disabled:opacity-50" onclick="this.innerHTML = '<i class=\'fas fa-spinner fa-spin mr-2\'></i> Loading...'; setTimeout(() => { alert('No more posts available right now.'); this.innerHTML = 'Load More'; }, 1500);">
+                            Load More <i class="fas fa-chevron-down ml-2"></i>
                         </button>
                     </div>
                 `;
@@ -657,14 +709,17 @@
             }
         };
 
+        // --- GLOBAL EVENTS & INIT ---
+
+        // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const html = document.documentElement;
 
-        // Default to dark mode unless the user explicitly selected 'light' previously
-        if (localStorage.getItem('theme') === 'light') {
-            html.classList.remove('dark');
-        } else {
+        // Check local storage
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
         }
 
         themeToggleBtn.addEventListener('click', () => {
@@ -672,6 +727,7 @@
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         });
 
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
@@ -679,9 +735,10 @@
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Scroll To Top
         const scrollBtn = document.getElementById('scrollToTop');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
+            if (window.scrollY > 300) {
                 scrollBtn.classList.remove('opacity-0', 'translate-y-10');
             } else {
                 scrollBtn.classList.add('opacity-0', 'translate-y-10');
@@ -691,16 +748,117 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+        // Set Date
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
+        // Docs Modal
         window.showApiDocs = () => document.getElementById('docs-modal').classList.remove('hidden');
         window.hideApiDocs = () => document.getElementById('docs-modal').classList.add('hidden');
 
+        // Contact Modal
+        window.showContactModal = () => document.getElementById('contact-modal').classList.remove('hidden');
+        window.hideContactModal = () => document.getElementById('contact-modal').classList.add('hidden');
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             router.navigate('home');
+            
+            // Notification Popup Logic
+            setTimeout(() => {
+                const notifPrompted = localStorage.getItem('rmn_notif_prompted');
+                if (!notifPrompted && "Notification" in window) {
+                    const popup = document.getElementById('notification-popup');
+                    popup.classList.remove('hidden');
+                    // Small delay to allow display block to apply before animating transform
+                    setTimeout(() => popup.classList.remove('translate-y-[150%]'), 50);
+                }
+            }, 2500);
+
+            // Notification Handlers
+            document.getElementById('btn-allow-notif')?.addEventListener('click', () => {
+                Notification.requestPermission().then(perm => {
+                    if(perm === 'granted') {
+                        console.log('Push notifications allowed.');
+                    }
+                });
+                localStorage.setItem('rmn_notif_prompted', 'true');
+                document.getElementById('notification-popup').classList.add('translate-y-[150%]');
+            });
+
+            document.getElementById('btn-deny-notif')?.addEventListener('click', () => {
+                localStorage.setItem('rmn_notif_prompted', 'true');
+                document.getElementById('notification-popup').classList.add('translate-y-[150%]');
+            });
+
+            // Google Sheets Newsletter Submission
+            const subForm = document.getElementById('subscribe-form');
+            if(subForm) {
+                subForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const btn = document.getElementById('nl-submit');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                    btn.disabled = true;
+
+                    const mobile = document.getElementById('nl-mobile').value;
+                    const email = document.getElementById('nl-email').value;
+
+                    // INSTRUCTIONS: Replace this URL with your actual Google Apps Script Web App URL
+                    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+                    
+                    try {
+                        const formData = new FormData();
+                        formData.append('mobile', mobile);
+                        formData.append('email', email);
+
+                        // If using the placeholder URL, simulate success
+                        if(GOOGLE_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
+                            await new Promise(r => setTimeout(r, 1500));
+                        } else {
+                            // Actual submission
+                            await fetch(GOOGLE_SCRIPT_URL, {
+                                method: 'POST',
+                                body: formData,
+                                mode: 'no-cors' // Prevent CORS errors, but note: response cannot be read fully
+                            });
+                        }
+                        
+                        alert('Subscribed successfully! Information saved securely.');
+                        subForm.reset();
+                    } catch(error) {
+                        alert('Error submitting form. Please try again.');
+                        console.error(error);
+                    } finally {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }
+                });
+            }
+
+            // Contact Form Submission
+            const contactForm = document.getElementById('contact-form');
+            if(contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = document.getElementById('contact-submit');
+                    const originalText = btn.innerHTML;
+                    
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                    btn.disabled = true;
+
+                    // Simulate sending data
+                    setTimeout(() => {
+                        alert('Thank you for contacting us! Our team will get back to you shortly.');
+                        contactForm.reset();
+                        hideContactModal();
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 1200);
+                });
+            }
         });
 
     </script>
 </body>
-
 </html>
