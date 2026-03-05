@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,15 +29,16 @@
                     },
                     colors: {
                         brand: {
-                            red: '#D90429', // News Red
-                            dark: '#0F172A',
+                            yellow: '#fcfc05', // Logo Yellow
+                            dark: '#0a0a0a',   // Deep Black
                             blue: '#1E40AF',
-                            gray: '#F3F4F6'
+                            gray: '#1f1f1f'
                         }
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-out',
                         'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -77,9 +78,9 @@
         .loader {
             border: 4px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 4px solid #D90429;
-            width: 40px;
-            height: 40px;
+            border-top: 4px solid #fcfc05; /* Updated to yellow */
+            width: 30px;
+            height: 30px;
             -webkit-animation: spin 1s linear infinite; /* Safari */
             animation: spin 1s linear infinite;
         }
@@ -110,34 +111,37 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-white transition-colors duration-300 font-sans">
+<body class="bg-gray-50 text-gray-900 dark:bg-[#0a0a0a] dark:text-white transition-colors duration-300 font-sans">
 
     <!-- Notification Popup -->
-    <div id="notification-popup" class="fixed bottom-4 left-4 z-50 bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-5 border border-brand-red/20 transform translate-y-[150%] transition-transform duration-700 max-w-sm hidden">
+    <div id="notification-popup" class="fixed bottom-4 left-4 z-50 bg-white dark:bg-slate-900 rounded-xl shadow-2xl p-5 border border-brand-yellow/20 transform translate-y-[150%] transition-transform duration-700 max-w-sm hidden">
         <div class="flex items-start">
-            <div class="flex-shrink-0 bg-brand-red/10 p-3 rounded-full text-brand-red">
+            <div class="flex-shrink-0 bg-brand-yellow/20 p-3 rounded-full text-brand-yellow">
                 <i class="fas fa-bell text-xl"></i>
             </div>
             <div class="ml-4">
                 <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-1">Stay Updated!</h3>
                 <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Allow notifications to get instant alerts on breaking news and top stories.</p>
                 <div class="flex space-x-3">
-                    <button id="btn-allow-notif" class="px-4 py-2 bg-brand-red text-white text-xs font-bold rounded hover:bg-red-700 transition shadow-sm">Allow</button>
-                    <button id="btn-deny-notif" class="px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-xs font-bold rounded hover:bg-gray-200 dark:hover:bg-slate-600 transition">Later</button>
+                    <button id="btn-allow-notif" class="px-4 py-2 bg-brand-yellow text-black text-xs font-bold rounded hover:bg-yellow-400 transition shadow-sm">Allow</button>
+                    <button id="btn-deny-notif" class="px-4 py-2 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 text-xs font-bold rounded hover:bg-gray-200 dark:hover:bg-slate-700 transition">Later</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Loading Screen -->
+    <!-- Loading Screen (Updated with Logo) -->
     <div id="global-loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-slate-900 transition-opacity duration-500">
-        <div class="loader mb-4"></div>
-        <h2 class="text-xl font-serif font-bold text-brand-dark dark:text-white">RMN</h2>
-        <p class="text-sm text-gray-500">Loading Latest News...</p>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfJo_mytqhIalMHs1xEeS9eslPpRcLhFslWu5vxgqio1SlO6bVOo2FC7nleRMQSwcBz_qHLJSpO3V0YAg0ouRkLdowX8CADp8GlcBdJszU1g_FdUhJE-67eQSRqYJ2yzCoiksvI_f21bG1hgcwn5cIXgf9Oe0pcuQsMhLSQEE-rPs1ELkxNDRvkKAF8LI/s789/Screenshot%202026-03-05%20123945.png" alt="Release Media Network Logo" class="h-20 w-20 mb-4 rounded-xl shadow-lg animate-pulse-fast object-cover">
+        <div class="flex items-center space-x-3 mb-2">
+            <div class="loader"></div>
+        </div>
+        <h2 class="text-xl font-serif font-bold text-brand-dark dark:text-white mt-2">Release Media Network</h2>
+        <p class="text-sm text-gray-500 mt-1">Loading Latest News...</p>
     </div>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="fixed bottom-8 right-8 z-40 bg-brand-red text-white p-3 rounded-full shadow-lg opacity-0 translate-y-10 transition-all duration-300 hover:bg-red-700 focus:outline-none" aria-label="Scroll to top">
+    <button id="scrollToTop" class="fixed bottom-8 right-8 z-40 bg-brand-yellow text-black p-3 rounded-full shadow-lg opacity-0 translate-y-10 transition-all duration-300 hover:bg-yellow-400 focus:outline-none" aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -147,21 +151,21 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="router.navigate('home')">
-                    <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center mr-3 text-white font-serif font-bold text-xl">R</div>
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfJo_mytqhIalMHs1xEeS9eslPpRcLhFslWu5vxgqio1SlO6bVOo2FC7nleRMQSwcBz_qHLJSpO3V0YAg0ouRkLdowX8CADp8GlcBdJszU1g_FdUhJE-67eQSRqYJ2yzCoiksvI_f21bG1hgcwn5cIXgf9Oe0pcuQsMhLSQEE-rPs1ELkxNDRvkKAF8LI/s789/Screenshot%202026-03-05%20123945.png" alt="Release Media Logo" class="h-10 w-10 md:h-12 md:w-12 mr-3 rounded-lg shadow-sm object-cover">
                     <div class="flex flex-col">
                         <span class="font-serif font-black text-xl tracking-tight leading-none text-brand-dark dark:text-white">RELEASE</span>
-                        <span class="text-xs font-bold tracking-widest text-brand-red uppercase">Media Network</span>
+                        <span class="text-xs font-bold tracking-widest text-brand-yellow uppercase">Media Network</span>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
                 <nav class="hidden lg:flex space-x-6">
-                    <a href="#" onclick="router.navigate('home')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Home</a>
-                    <a href="#" onclick="router.navigate('sports')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Sports</a>
-                    <a href="#" onclick="router.navigate('automobile')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Automobile</a>
-                    <a href="#" onclick="router.navigate('business')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Business</a>
-                    <a href="#" onclick="router.navigate('tech')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Tech & AI</a>
-                    <a href="#" onclick="router.navigate('education')" class="nav-link font-medium text-gray-700 hover:text-brand-red dark:text-gray-300 dark:hover:text-white transition">Education</a>
+                    <a href="#" onclick="router.navigate('home')" class="nav-link font-medium text-gray-700 hover:text-brand-yellow dark:text-gray-300 dark:hover:text-brand-yellow transition">Home</a>
+                    <a href="#" onclick="router.navigate('sports')" class="nav-link font-medium text-gray-700 hover:text-brand-yellow dark:text-gray-300 dark:hover:text-brand-yellow transition">Sports</a>
+                    <a href="#" onclick="router.navigate('automobile')" class="nav-link font-medium text-gray-700 hover:text-brand-yellow dark:text-gray-300 dark:hover:text-brand-yellow transition">Automobile</a>
+                    <a href="#" onclick="router.navigate('business')" class="nav-link font-medium text-gray-700 hover:text-brand-yellow dark:text-gray-300 dark:hover:text-brand-yellow transition">Business</a>
+                    <a href="#" onclick="router.navigate('tech')" class="nav-link font-medium text-gray-700 hover:text-brand-yellow dark:text-gray-300 dark:hover:text-brand-yellow transition">Tech & AI</a>
+                    <a href="#" onclick="router.navigate('education')" class="nav-link font-medium text-gray-700 hover:text-brand-yellow dark:text-gray-300 dark:hover:text-brand-yellow transition">Education</a>
                 </nav>
 
                 <!-- Right Actions -->
@@ -169,7 +173,7 @@
                     <!-- Theme Toggle -->
                     <button id="theme-toggle" class="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition focus:outline-none">
                         <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+                        <i class="fas fa-sun hidden dark:inline text-brand-yellow"></i>
                     </button>
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-md text-gray-700 dark:text-white focus:outline-none">
@@ -180,14 +184,14 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800 absolute w-full shadow-xl">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-[#0a0a0a] border-t dark:border-slate-800 absolute w-full shadow-xl">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" onclick="router.navigate('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Home</a>
-                <a href="#" onclick="router.navigate('sports')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Sports</a>
-                <a href="#" onclick="router.navigate('automobile')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Automobile</a>
-                <a href="#" onclick="router.navigate('business')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Business</a>
-                <a href="#" onclick="router.navigate('tech')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Tech & AI</a>
-                <a href="#" onclick="router.navigate('education')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-red hover:bg-gray-50 dark:text-white dark:hover:bg-slate-800">Education</a>
+                <a href="#" onclick="router.navigate('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-yellow hover:bg-gray-50 dark:text-white dark:hover:bg-slate-900">Home</a>
+                <a href="#" onclick="router.navigate('sports')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-yellow hover:bg-gray-50 dark:text-white dark:hover:bg-slate-900">Sports</a>
+                <a href="#" onclick="router.navigate('automobile')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-yellow hover:bg-gray-50 dark:text-white dark:hover:bg-slate-900">Automobile</a>
+                <a href="#" onclick="router.navigate('business')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-yellow hover:bg-gray-50 dark:text-white dark:hover:bg-slate-900">Business</a>
+                <a href="#" onclick="router.navigate('tech')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-yellow hover:bg-gray-50 dark:text-white dark:hover:bg-slate-900">Tech & AI</a>
+                <a href="#" onclick="router.navigate('education')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-yellow hover:bg-gray-50 dark:text-white dark:hover:bg-slate-900">Education</a>
             </div>
         </div>
     </header>
@@ -197,11 +201,11 @@
         
         <!-- Header Banner (Home Only) -->
         <div id="home-banner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 hidden">
-            <div class="text-center py-10 bg-gradient-to-r from-brand-dark to-brand-blue rounded-3xl text-white shadow-2xl relative overflow-hidden">
+            <div class="text-center py-10 bg-gradient-to-r from-[#0a0a0a] to-slate-900 border border-slate-800 rounded-3xl text-white shadow-2xl relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 relative z-10">RELEASE MEDIA NETWORK</h1>
-                <p class="text-lg text-blue-100 max-w-2xl mx-auto relative z-10">One Network | Many Voices</p>
-                <div class="mt-6 text-sm font-semibold tracking-wider uppercase text-blue-200 relative z-10">
+                <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 relative z-10 text-brand-yellow">RELEASE MEDIA NETWORK</h1>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto relative z-10">One Network | Many Voices</p>
+                <div class="mt-6 text-sm font-semibold tracking-wider uppercase text-gray-400 relative z-10">
                     <span id="current-date"></span>
                 </div>
             </div>
@@ -215,67 +219,67 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand-dark text-white pt-16 pb-8 border-t border-slate-800">
+    <footer class="bg-[#0a0a0a] text-white pt-16 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
                 <!-- Brand -->
                 <div class="col-span-1 md:col-span-2 lg:col-span-1">
-                    <div class="flex items-center mb-4">
-                        <div class="w-8 h-8 bg-brand-red rounded flex items-center justify-center mr-2 font-serif font-bold text-lg">R</div>
-                        <span class="font-serif font-bold text-xl">Release Media</span>
+                    <div class="flex items-center mb-4 cursor-pointer" onclick="router.navigate('home')">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfJo_mytqhIalMHs1xEeS9eslPpRcLhFslWu5vxgqio1SlO6bVOo2FC7nleRMQSwcBz_qHLJSpO3V0YAg0ouRkLdowX8CADp8GlcBdJszU1g_FdUhJE-67eQSRqYJ2yzCoiksvI_f21bG1hgcwn5cIXgf9Oe0pcuQsMhLSQEE-rPs1ELkxNDRvkKAF8LI/s789/Screenshot%202026-03-05%20123945.png" alt="Release Media Logo" class="h-8 w-8 mr-3 rounded-md shadow-sm object-cover bg-brand-yellow">
+                        <span class="font-serif font-bold text-xl text-brand-yellow">Release Media</span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Empowering the world with real-time, accurate, and unbiased news. Connecting you to the stories that matter.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-facebook-f text-sm"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-twitter text-sm"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-instagram text-sm"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition"><i class="fab fa-youtube text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-yellow hover:text-black transition"><i class="fab fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-yellow hover:text-black transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-yellow hover:text-black transition"><i class="fab fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-yellow hover:text-black transition"><i class="fab fa-youtube text-sm"></i></a>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Quick Links</h3>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-yellow inline-block pb-1">Quick Links</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">Advertise With Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
-                        <li><a href="#" onclick="showContactModal()" class="hover:text-white transition">Contact Us</a></li>
-                        <li><a href="#" onclick="showApiDocs()" class="hover:text-white transition text-brand-red mt-2 block">API Documentation</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Advertise With Us</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Careers</a></li>
+                        <li><a href="#" onclick="showContactModal()" class="hover:text-brand-yellow transition">Contact Us</a></li>
+                        <li><a href="#" onclick="showApiDocs()" class="hover:text-brand-yellow transition text-brand-yellow mt-2 block">API Documentation</a></li>
                     </ul>
                 </div>
 
                 <!-- Categories -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Categories</h3>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-yellow inline-block pb-1">Categories</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" onclick="router.navigate('sports')" class="hover:text-white transition">Sports</a></li>
-                        <li><a href="#" onclick="router.navigate('tech')" class="hover:text-white transition">Technology</a></li>
-                        <li><a href="#" onclick="router.navigate('business')" class="hover:text-white transition">Business</a></li>
-                        <li><a href="#" onclick="router.navigate('education')" class="hover:text-white transition">Education</a></li>
+                        <li><a href="#" onclick="router.navigate('sports')" class="hover:text-brand-yellow transition">Sports</a></li>
+                        <li><a href="#" onclick="router.navigate('tech')" class="hover:text-brand-yellow transition">Technology</a></li>
+                        <li><a href="#" onclick="router.navigate('business')" class="hover:text-brand-yellow transition">Business</a></li>
+                        <li><a href="#" onclick="router.navigate('education')" class="hover:text-brand-yellow transition">Education</a></li>
                     </ul>
                 </div>
 
                 <!-- Legal (New Section) -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Legal</h3>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-yellow inline-block pb-1">Legal</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white transition">Disclaimer</a></li>
+                        <li><a href="#" onclick="showLegalModal('privacy')" class="hover:text-brand-yellow transition">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showLegalModal('terms')" class="hover:text-brand-yellow transition">Terms of Service</a></li>
+                        <li><a href="#" onclick="showLegalModal('disclaimer')" class="hover:text-brand-yellow transition">Disclaimer</a></li>
                     </ul>
                 </div>
 
                 <!-- Newsletter -->
                 <div class="md:col-span-2 lg:col-span-1">
-                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-red inline-block pb-1">Newsletter</h3>
+                    <h3 class="text-lg font-bold mb-4 border-b-2 border-brand-yellow inline-block pb-1">Newsletter</h3>
                     <p class="text-gray-400 text-sm mb-4">Get the latest headlines delivered to your inbox.</p>
                     <form id="subscribe-form" class="flex flex-col space-y-3">
-                        <input type="tel" id="nl-mobile" required placeholder="Mobile Number" pattern="[0-9]{10,15}" title="Enter valid mobile number" class="bg-slate-800 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red text-sm border border-slate-700">
-                        <input type="email" id="nl-email" required placeholder="Your email address" class="bg-slate-800 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red text-sm border border-slate-700">
-                        <button type="submit" id="nl-submit" class="bg-brand-red hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm transition uppercase tracking-wide">Subscribe</button>
+                        <input type="tel" id="nl-mobile" required placeholder="Mobile Number" pattern="[0-9]{10,15}" title="Enter valid mobile number" class="bg-slate-900 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm border border-slate-700">
+                        <input type="email" id="nl-email" required placeholder="Your email address" class="bg-slate-900 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm border border-slate-700">
+                        <button type="submit" id="nl-submit" class="bg-brand-yellow hover:bg-yellow-500 text-black px-4 py-2 rounded font-bold text-sm transition uppercase tracking-wide">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -288,11 +292,11 @@
 
     <!-- Documentation Modal -->
     <div id="docs-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-80 flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl">
+        <div class="bg-white dark:bg-[#0a0a0a] rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl border border-slate-800">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl font-bold font-serif text-brand-dark dark:text-white">Instagram API Integration Guide</h2>
-                    <button onclick="hideApiDocs()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+                    <h2 class="text-2xl font-bold font-serif text-brand-dark dark:text-brand-yellow">Instagram API Integration Guide</h2>
+                    <button onclick="hideApiDocs()" class="text-gray-500 hover:text-brand-yellow text-2xl">&times;</button>
                 </div>
                 <div class="prose dark:prose-invert text-sm text-gray-600 dark:text-gray-300">
                     <p class="font-bold">How to connect 7 Different Instagram Accounts:</p>
@@ -304,7 +308,7 @@
                         <li>Paste the specific <code>token</code> and <code>userId</code> into the corresponding category slot.</li>
                         <li>Set <code>USE_MOCK_DATA: false</code> to activate the live connection.</li>
                     </ol>
-                    <div class="mt-4 p-4 bg-gray-100 dark:bg-slate-800 rounded">
+                    <div class="mt-4 p-4 bg-gray-100 dark:bg-slate-900 rounded border border-slate-800">
                         <code>
                             ACCOUNTS: {<br>
                             &nbsp;&nbsp;sports: { token: '...', userId: '...' },<br>
@@ -315,7 +319,7 @@
                     </div>
                 </div>
                 <div class="mt-6 text-right">
-                    <button onclick="hideApiDocs()" class="px-4 py-2 bg-brand-dark text-white rounded hover:bg-opacity-90">Close</button>
+                    <button onclick="hideApiDocs()" class="px-4 py-2 bg-brand-yellow text-black font-bold rounded hover:bg-yellow-500 transition">Close</button>
                 </div>
             </div>
         </div>
@@ -323,27 +327,43 @@
 
     <!-- Contact Us Modal -->
     <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-80 flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-lg max-w-lg w-full shadow-2xl overflow-hidden">
+        <div class="bg-white dark:bg-[#0a0a0a] rounded-lg max-w-lg w-full shadow-2xl overflow-hidden border border-slate-800">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl font-bold font-serif text-brand-dark dark:text-white">Contact Us</h2>
-                    <button onclick="hideContactModal()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+                    <h2 class="text-2xl font-bold font-serif text-brand-dark dark:text-brand-yellow">Contact Us</h2>
+                    <button onclick="hideContactModal()" class="text-gray-500 hover:text-brand-yellow text-2xl">&times;</button>
                 </div>
                 <form id="contact-form" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
-                        <input type="text" id="contact-name" required placeholder="John Doe" class="w-full bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red border border-gray-200 dark:border-slate-700">
+                        <input type="text" id="contact-name" required placeholder="John Doe" class="w-full bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-yellow border border-gray-200 dark:border-slate-800">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-                        <input type="email" id="contact-email" required placeholder="john@example.com" class="w-full bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red border border-gray-200 dark:border-slate-700">
+                        <input type="email" id="contact-email" required placeholder="john@example.com" class="w-full bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-yellow border border-gray-200 dark:border-slate-800">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-                        <textarea id="contact-message" required rows="4" placeholder="How can we help you?" class="w-full bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-red border border-gray-200 dark:border-slate-700"></textarea>
+                        <textarea id="contact-message" required rows="4" placeholder="How can we help you?" class="w-full bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-yellow border border-gray-200 dark:border-slate-800"></textarea>
                     </div>
-                    <button type="submit" id="contact-submit" class="w-full bg-brand-red hover:bg-red-700 text-white px-4 py-3 rounded font-bold transition shadow-md">Send Message</button>
+                    <button type="submit" id="contact-submit" class="w-full bg-brand-yellow hover:bg-yellow-500 text-black px-4 py-3 rounded font-bold transition shadow-md">Send Message</button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legal Documents Modal -->
+    <div id="legal-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-80 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-[#0a0a0a] rounded-lg max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-800">
+            <div class="p-6 border-b border-gray-200 dark:border-slate-800 flex justify-between items-center bg-gray-50 dark:bg-slate-900 rounded-t-lg">
+                <h2 id="legal-modal-title" class="text-2xl font-bold font-serif text-brand-dark dark:text-brand-yellow">Legal Document</h2>
+                <button onclick="hideLegalModal()" class="text-gray-500 hover:text-brand-yellow text-3xl focus:outline-none">&times;</button>
+            </div>
+            <div id="legal-modal-content" class="p-6 overflow-y-auto prose dark:prose-invert max-w-none text-sm text-gray-700 dark:text-gray-300 space-y-5 leading-relaxed">
+                <!-- Dynamic Content Goes Here -->
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-slate-800 text-right bg-gray-50 dark:bg-slate-900 rounded-b-lg">
+                <button onclick="hideLegalModal()" class="px-6 py-2 bg-brand-yellow text-black font-bold rounded hover:bg-yellow-500 transition shadow-sm">I Understand</button>
             </div>
         </div>
     </div>
@@ -375,12 +395,12 @@
 
         // Categories Configuration
         const CATEGORIES = [
-            { id: 'sports', label: 'Sports', color: 'bg-orange-600', keywords: 'sports,stadium,athlete,soccer', icon: 'fa-futbol' },
-            { id: 'automobile', label: 'Automobile', color: 'bg-blue-600', keywords: 'supercar,luxury car,automotive', icon: 'fa-car' },
-            { id: 'business', label: 'Business', color: 'bg-emerald-600', keywords: 'business meeting,finance,stock market', icon: 'fa-briefcase' },
-            { id: 'tech', label: 'Tech & AI', color: 'bg-indigo-600', keywords: 'artificial intelligence,robot,computer,chip', icon: 'fa-microchip' },
+            { id: 'sports', label: 'Sports', color: 'bg-red-600', keywords: 'sports,stadium,athlete,soccer', icon: 'fa-futbol' },
+            { id: 'automobile', label: 'Automobile', color: 'bg-[#D2B48C]', keywords: 'supercar,luxury car,automotive', icon: 'fa-car' },
+            { id: 'business', label: 'Business', color: 'bg-blue-900', keywords: 'business meeting,finance,stock market', icon: 'fa-briefcase' },
+            { id: 'tech', label: 'Tech & AI', color: 'bg-sky-500', keywords: 'artificial intelligence,robot,computer,chip', icon: 'fa-microchip' },
             { id: 'agriculture', label: 'Agriculture', color: 'bg-green-600', keywords: 'agriculture,farm,harvest,wheat', icon: 'fa-tractor' },
-            { id: 'education', label: 'Education', color: 'bg-yellow-600', keywords: 'university,library,student', icon: 'fa-graduation-cap' }
+            { id: 'education', label: 'Education', color: 'bg-purple-600', keywords: 'university,library,student', icon: 'fa-graduation-cap' }
         ];
 
         // --- MOCK DATA GENERATOR (High Quality Placeholders) ---
@@ -488,10 +508,21 @@
                 // Ensure image exists or use fallback
                 const img = post.imageUrl.includes('unsplash') ? post.imageUrl : post.fallbackImage;
                 
+                // Encode strings safely for sharing URLs
+                const encUrl = encodeURIComponent(post.permalink || window.location.href);
+                const encTitle = encodeURIComponent(post.caption || 'Check out this news from Release Media Network');
+                
+                // Specific platform share links
+                const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`;
+                const xUrl = `https://twitter.com/intent/tweet?text=${encTitle}&url=${encUrl}`;
+                const threadsUrl = `https://threads.net/intent/post?text=${encTitle}%20${encUrl}`;
+                const inUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encUrl}`;
+                const waUrl = `https://api.whatsapp.com/send?text=${encTitle}%20${encUrl}`;
+                
                 return `
                 <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-slate-700 flex flex-col h-full group">
-                    <div class="relative h-48 overflow-hidden img-zoom-container bg-gray-200 dark:bg-slate-700">
-                        <img src="${img}" alt="News Image" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400?text=News+Image'">
+                    <div class="relative w-full overflow-hidden img-zoom-container bg-black dark:bg-[#0a0a0a] flex items-center justify-center">
+                        <img src="${img}" alt="News Image" class="w-full h-auto object-contain" onerror="this.src='https://placehold.co/600x400?text=News+Image'">
                         <div class="absolute top-2 right-2 bg-brand-dark/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-sm">
                             <i class="fab fa-instagram"></i> INSTAGRAM
                         </div>
@@ -503,20 +534,20 @@
                         <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3 line-clamp-2 leading-relaxed flex-grow">
                             ${post.caption}
                         </h3>
-                        <a href="${post.permalink}" target="_blank" class="mt-auto flex items-center justify-center w-full py-2 border border-brand-red text-brand-red rounded-lg text-sm font-bold hover:bg-brand-red hover:text-white transition-colors duration-300 group-hover:shadow-md">
+                        <a href="${post.permalink}" target="_blank" class="mt-auto flex items-center justify-center w-full py-2 border border-brand-yellow text-brand-dark dark:text-brand-yellow rounded-lg text-sm font-bold hover:bg-brand-yellow hover:text-black dark:hover:text-black transition-colors duration-300 group-hover:shadow-md">
                             Read Post <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                         </a>
                     </div>
                     
                     <!-- Social Share Strip -->
-                    <div class="px-4 py-3 bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-slate-700 flex justify-between items-center text-gray-400">
-                        <i class="fas fa-share-nodes text-lg hover:text-brand-red transition cursor-pointer" title="Share"></i>
+                    <div class="px-4 py-3 bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 flex justify-between items-center text-gray-400">
+                        <i class="fas fa-share-nodes text-lg hover:text-brand-yellow transition cursor-pointer" title="Share via Device" onclick="sharePost('${encTitle}', '${encUrl}')"></i>
                         <div class="flex space-x-3 text-sm">
-                            <a href="#" class="hover:text-brand-blue hover:scale-110 transition transform" title="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="hover:text-gray-900 dark:hover:text-white hover:scale-110 transition transform" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="#" class="hover:text-gray-900 dark:hover:text-white hover:scale-110 transition transform" title="Threads"><i class="fa-brands fa-threads"></i></a>
-                            <a href="#" class="hover:text-blue-600 hover:scale-110 transition transform" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="hover:text-green-500 hover:scale-110 transition transform" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="${fbUrl}" target="_blank" class="hover:text-brand-blue hover:scale-110 transition transform" title="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="${xUrl}" target="_blank" class="hover:text-gray-900 dark:hover:text-white hover:scale-110 transition transform" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="${threadsUrl}" target="_blank" class="hover:text-gray-900 dark:hover:text-white hover:scale-110 transition transform" title="Threads"><i class="fa-brands fa-threads"></i></a>
+                            <a href="${inUrl}" target="_blank" class="hover:text-blue-600 hover:scale-110 transition transform" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="${waUrl}" target="_blank" class="hover:text-green-500 hover:scale-110 transition transform" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
@@ -538,7 +569,7 @@
                             ${category.label}
                         </h2>
                     </div>
-                    <button onclick="router.navigate('${category.id}')" class="hidden md:flex items-center text-sm font-bold text-brand-red hover:text-brand-dark dark:hover:text-white transition">
+                    <button onclick="router.navigate('${category.id}')" class="hidden md:flex items-center text-sm font-bold text-brand-dark dark:text-brand-yellow hover:text-brand-yellow dark:hover:text-yellow-400 transition">
                         View All <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
@@ -547,7 +578,7 @@
 
             mobileViewAllBtn: (categoryId) => `
                 <div class="mt-6 text-center md:hidden">
-                    <button onclick="router.navigate('${categoryId}')" class="w-full py-3 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 font-bold rounded-lg hover:bg-brand-red hover:text-white transition shadow-sm">
+                    <button onclick="router.navigate('${categoryId}')" class="w-full py-3 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-brand-yellow font-bold rounded-lg hover:bg-brand-yellow hover:text-black transition shadow-sm border border-slate-700 hover:border-brand-yellow">
                         View All ${categoryId.toUpperCase()}
                     </button>
                 </div>
@@ -558,7 +589,7 @@
                 <section class="mb-16 animate-slide-up">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-gray-200 dark:border-slate-700 pb-2">
                         <div class="flex items-center">
-                            <div class="mr-3 text-brand-red animate-[spin_4s_linear_infinite] flex items-center justify-center">
+                            <div class="mr-3 text-brand-yellow animate-[spin_4s_linear_infinite] flex items-center justify-center">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2L22 20H2L12 2Z" />
                                 </svg>
@@ -575,12 +606,12 @@
                 posts.forEach(post => {
                     const img = post.imageUrl.includes('unsplash') ? post.imageUrl : post.fallbackImage;
                     html += `
-                        <div class="min-w-[220px] md:min-w-[260px] aspect-[9/16] snap-center flex-shrink-0 bg-slate-800 rounded-2xl overflow-hidden relative group shadow-lg border border-gray-200 dark:border-slate-700 cursor-pointer hover:shadow-2xl transition-all duration-300" onclick="window.open('${post.permalink}', '_blank')">
+                        <div class="min-w-[220px] md:min-w-[260px] aspect-[9/16] snap-center flex-shrink-0 bg-slate-800 rounded-2xl overflow-hidden relative group shadow-lg border border-gray-200 dark:border-slate-700 cursor-pointer hover:shadow-2xl hover:border-brand-yellow transition-all duration-300" onclick="window.open('${post.permalink}', '_blank')">
                             <img src="${img}" alt="Reel" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
                             
                             <!-- Reel Badge -->
-                            <div class="absolute top-3 right-3 bg-brand-red/90 text-white text-[10px] font-bold px-2 py-1 rounded-md backdrop-blur-md flex items-center shadow-lg pointer-events-none">
+                            <div class="absolute top-3 right-3 bg-brand-yellow/90 text-black text-[10px] font-bold px-2 py-1 rounded-md backdrop-blur-md flex items-center shadow-lg pointer-events-none">
                                 <i class="fab fa-instagram mr-1"></i> REEL
                             </div>
                             
@@ -699,7 +730,7 @@
                 // Pagination (Visual Only)
                 const paginationHtml = `
                     <div class="flex justify-center pb-12">
-                        <button class="px-6 py-3 bg-brand-dark text-white rounded-full font-bold hover:bg-brand-red transition shadow-lg flex items-center disabled:opacity-50" onclick="this.innerHTML = '<i class=\'fas fa-spinner fa-spin mr-2\'></i> Loading...'; setTimeout(() => { alert('No more posts available right now.'); this.innerHTML = 'Load More'; }, 1500);">
+                        <button class="px-6 py-3 bg-brand-yellow text-black rounded-full font-bold hover:bg-yellow-500 transition shadow-lg flex items-center disabled:opacity-50" onclick="this.innerHTML = '<i class=\'fas fa-spinner fa-spin mr-2\'></i> Loading...'; setTimeout(() => { alert('No more posts available right now.'); this.innerHTML = 'Load More'; }, 1500);">
                             Load More <i class="fas fa-chevron-down ml-2"></i>
                         </button>
                     </div>
@@ -715,11 +746,11 @@
         const themeToggleBtn = document.getElementById('theme-toggle');
         const html = document.documentElement;
 
-        // Check local storage
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        } else {
+        // Force Dark Mode by default, unless user has explicitly saved 'light'
+        if (localStorage.getItem('theme') === 'light') {
             html.classList.remove('dark');
+        } else {
+            html.classList.add('dark');
         }
 
         themeToggleBtn.addEventListener('click', () => {
@@ -758,6 +789,128 @@
         // Contact Modal
         window.showContactModal = () => document.getElementById('contact-modal').classList.remove('hidden');
         window.hideContactModal = () => document.getElementById('contact-modal').classList.add('hidden');
+
+        // Legal Modal Data and Logic
+        const legalTexts = {
+            privacy: {
+                title: "Privacy Policy",
+                content: `
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">1. Introduction</h3>
+                    <p>Welcome to Release Media Network Private Limited ("Company", "we", "our", "us"). We respect your privacy and are strongly committed to protecting your personal data. This Privacy Policy outlines our practices regarding the collection, use, processing, and disclosure of information that we may collect from you when you visit our digital news portal, mobile applications, or any associated platforms (collectively, the "Services"). By accessing or using our Services, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. If you do not agree with our policies and practices, your choice is not to use our Services.</p>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">2. Information We Collect</h3>
+                    <p>We collect several types of information from and about users of our Services, including information by which you may be personally identified, such as name, postal address, e-mail address, telephone number, or any other identifier by which you may be contacted online or offline ("Personal Information"). We also collect information that is about you but individually does not identify you, such as traffic data, location data, logs, referring/exit pages, date and time of your visit to our Services, error information, clickstream data, and other communication data and the resources that you access and use on the Services. Furthermore, we collect information about your internet connection, the equipment you use to access our Services, and usage details.</p>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">3. How We Collect Information</h3>
+                    <p>We collect this information directly from you when you provide it to us, for instance, when you subscribe to our newsletter, register for an account, fill out a form, or correspond with us. We also collect information automatically as you navigate through the site. Information collected automatically may include usage details, IP addresses, and information collected through cookies, web beacons, and other tracking technologies. We may also receive information about you from third parties, including, for example, business partners, sub-contractors in technical, payment and delivery services, advertising networks, analytics providers, and search information providers.</p>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">4. Use of Your Information</h3>
+                    <p>We use information that we collect about you or that you provide to us, including any personal information, to present our Services and its contents to you; to provide you with information, products, or services that you request from us; to fulfill any other purpose for which you provide it; to provide you with notices about your account, including expiration and renewal notices; to carry out our obligations and enforce our rights arising from any contracts entered into between you and us, including for billing and collection; to notify you about changes to our Services or any products or services we offer or provide though it; to allow you to participate in interactive features on our Services; and in any other way we may describe when you provide the information. We may also use your information to contact you about our own and third-parties' goods and services that may be of interest to you.</p>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">5. Disclosure of Your Information</h3>
+                    <p>We may disclose aggregated information about our users, and information that does not identify any individual, without restriction. We may disclose personal information that we collect or you provide as described in this privacy policy to our subsidiaries and affiliates; to contractors, service providers, and other third parties we use to support our business and who are bound by contractual obligations to keep personal information confidential and use it only for the purposes for which we disclose it to them; to a buyer or other successor in the event of a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of the Company's assets; to fulfill the purpose for which you provide it; for any other purpose disclosed by us when you provide the information; or with your consent. We may also disclose your personal information to comply with any court order, law, or legal process, including to respond to any government or regulatory request.</p>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">6. Data Security and Retention</h3>
+                    <p>We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. All information you provide to us is stored on our secure servers behind firewalls. Unfortunately, the transmission of information via the internet is not completely secure. Although we do our best to protect your personal information, we cannot guarantee the security of your personal information transmitted to our Services. Any transmission of personal information is at your own risk. We will only retain your personal data for as long as necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">7. Your Rights and Choices</h3>
+                    <p>You have the right to request access to your personal data, request correction of the personal data that we hold about you, request erasure of your personal data, object to processing of your personal data, request restriction of processing of your personal data, request the transfer of your personal data to you or to a third party, and withdraw consent at any time where we are relying on consent to process your personal data. To exercise any of these rights, please contact our Data Protection Officer through the contact form provided on our website.</p>
+                `
+            },
+            terms: {
+                title: "Terms of Service",
+                content: `
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">1. Acceptance of the Terms</h3>
+                    <p>These Terms of Service ("Terms") are entered into by and between you and Release Media Network Private Limited ("Company", "we", "our", "us"). The following terms and conditions govern your access to and use of our digital news platform, including any content, functionality, and services offered on or through the website (the "Services"). Please read the Terms of Service carefully before you start to use the Services. By using the Services, or by clicking to accept or agree to the Terms of Service when this option is made available to you, you accept and agree to be bound and abide by these Terms. If you do not want to agree to these Terms of Service, you must not access or use the Services.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">2. Changes to the Terms of Service</h3>
+                    <p>We may revise and update these Terms of Service from time to time in our sole discretion. All changes are effective immediately when we post them, and apply to all access to and use of the Services thereafter. Your continued use of the Services following the posting of revised Terms of Service means that you accept and agree to the changes. You are expected to check this page frequently so you are aware of any changes, as they are binding on you.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">3. Accessing the Services and Account Security</h3>
+                    <p>We reserve the right to withdraw or amend our Services, and any service or material we provide on the Services, in our sole discretion without notice. We will not be liable if for any reason all or any part of the Services is unavailable at any time or for any period. From time to time, we may restrict access to some parts of the Services, or the entire Services, to users, including registered users. You are responsible for making all arrangements necessary for you to have access to the Services, and ensuring that all persons who access the Services through your internet connection are aware of these Terms of Service and comply with them.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">4. Intellectual Property Rights</h3>
+                    <p>The Services and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by the Company, its licensors, or other providers of such material and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws. These Terms of Service permit you to use the Services for your personal, non-commercial use only. You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Services.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">5. User Contributions</h3>
+                    <p>The Services may contain message boards, chat rooms, personal web pages or profiles, forums, bulletin boards, and other interactive features that allow users to post, submit, publish, display, or transmit to other users or other persons content or materials (collectively, "User Contributions") on or through the Services. All User Contributions must comply with the Content Standards set out in these Terms. Any User Contribution you post to the site will be considered non-confidential and non-proprietary. By providing any User Contribution on the Services, you grant us and our affiliates and service providers the right to use, reproduce, modify, perform, display, distribute, and otherwise disclose to third parties any such material.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">6. Prohibited Uses</h3>
+                    <p>You may use the Services only for lawful purposes and in accordance with these Terms of Service. You agree not to use the Services: In any way that violates any applicable federal, state, local, or international law or regulation. For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way by exposing them to inappropriate content, asking for personally identifiable information, or otherwise. To transmit, or procure the sending of, any advertising or promotional material, including any "junk mail", "chain letter", "spam", or any other similar solicitation. To impersonate or attempt to impersonate the Company, a Company employee, another user, or any other person or entity.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">7. Disclaimer of Warranties and Limitation of Liability</h3>
+                    <p>You understand that we cannot and do not guarantee or warrant that files available for downloading from the internet or the Services will be free of viruses or other destructive code. You are responsible for implementing sufficient procedures and checkpoints to satisfy your particular requirements for anti-virus protection and accuracy of data input and output. TO THE FULLEST EXTENT PROVIDED BY LAW, WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE ATTACK, VIRUSES, OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR COMPUTER EQUIPMENT, COMPUTER PROGRAMS, DATA, OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES.</p>
+                `
+            },
+            disclaimer: {
+                title: "General Disclaimer",
+                content: `
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">1. General Information Purpose Only</h3>
+                    <p>The information provided by Release Media Network Private Limited ("we," "us," or "our") on our digital news portal, mobile application, and all associated platforms (the "Site") is for general informational and educational purposes only. All information on the Site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site. The news, opinions, analysis, and materials presented are based on available information at the time of publication and are subject to change without notice.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">2. Not Professional Advice</h3>
+                    <p>The Site cannot and does not contain professional financial, legal, medical, or other specific professional advice. The financial, legal, medical, and other professional information is provided for general informational and educational purposes only and is not a substitute for professional advice. Accordingly, before taking any actions based upon such information, we encourage you to consult with the appropriate professionals. We do not provide any kind of professional advice. THE USE OR RELIANCE OF ANY INFORMATION CONTAINED ON THE SITE IS SOLELY AT YOUR OWN RISK. You should not rely on statements or representations made within the Site as a factual basis for investment, medical, or legal decisions.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">3. External Links Disclaimer</h3>
+                    <p>The Site may contain (or you may be sent through the Site) links to other websites or content belonging to or originating from third parties or links to websites and features in banners or other advertising. Such external links are not investigated, monitored, or checked for accuracy, adequacy, validity, reliability, availability, or completeness by us. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR THE ACCURACY OR RELIABILITY OF ANY INFORMATION OFFERED BY THIRD-PARTY WEBSITES LINKED THROUGH THE SITE OR ANY WEBSITE OR FEATURE LINKED IN ANY BANNER OR OTHER ADVERTISING. WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">4. Views and Opinions Disclaimer</h3>
+                    <p>The Site may contain views and opinions which are those of the authors, contributors, journalists, and external commentators and do not necessarily reflect the official policy or position of Release Media Network Private Limited or any of its affiliates, officers, employees, or agencies. Any content provided by our bloggers or authors are of their opinion and are not intended to malign any religion, ethnic group, club, organization, company, individual, or anyone or anything. We reserve the right to remove or edit content that violates our community guidelines, but we are not legally responsible for the independent opinions published on our platform.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">5. Fair Use Notice</h3>
+                    <p>This Site contains copyrighted material the use of which has not always been specifically authorized by the copyright owner. We are making such material available in our efforts to advance understanding of environmental, political, human rights, economic, democratic, scientific, and social justice issues, etc. We believe this constitutes a 'fair use' of any such copyrighted material as provided for in national and international copyright laws. If you wish to use copyrighted material from this site for purposes of your own that go beyond 'fair use', you must obtain permission from the copyright owner.</p>
+
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 mt-4">6. Errors and Omissions Disclaimer</h3>
+                    <p>While we have made every attempt to ensure that the information contained in this site has been obtained from reliable sources, Release Media Network is not responsible for any errors or omissions, or for the results obtained from the use of this information. All information in this site is provided "as is", with no guarantee of completeness, accuracy, timeliness or of the results obtained from the use of this information, and without warranty of any kind, express or implied, including, but not limited to warranties of performance, merchantability, and fitness for a particular purpose. In no event will Release Media Network, its related partnerships or corporations, or the partners, agents or employees thereof be liable to you or anyone else for any decision made or action taken in reliance on the information in this Site.</p>
+                `
+            }
+        };
+
+        window.showLegalModal = (type) => {
+            const modal = document.getElementById('legal-modal');
+            const title = document.getElementById('legal-modal-title');
+            const content = document.getElementById('legal-modal-content');
+            
+            title.textContent = legalTexts[type].title;
+            content.innerHTML = legalTexts[type].content;
+            
+            modal.classList.remove('hidden');
+        };
+
+        window.hideLegalModal = () => {
+            document.getElementById('legal-modal').classList.add('hidden');
+        };
+
+        // Native Share API Setup
+        window.sharePost = async (encTitle, encUrl) => {
+            const title = decodeURIComponent(encTitle);
+            const url = decodeURIComponent(encUrl);
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Release Media Network',
+                        text: title,
+                        url: url
+                    });
+                } catch (err) {
+                    console.log('User canceled share or error:', err);
+                }
+            } else {
+                // Fallback: Copy to clipboard using execCommand for wide iframe compatibility
+                const textArea = document.createElement("textarea");
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Link copied to clipboard!');
+                } catch (err) {
+                    alert('Unable to copy link.');
+                }
+                document.body.removeChild(textArea);
+            }
+        };
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
